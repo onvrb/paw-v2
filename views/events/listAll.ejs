@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Item List</title>
+    <title>Event List</title>
   </head>
   <body>
     <div class="container">
-      <h1>Item List</h1>
-      <% if(items.length>0) { %>
+      <h1>Event List</h1>
+      <% if(events.length>0) { %>
         <table class="list-table">
           <thead>
             <tr>
               <th>#</th>
               <th>Id</th>
-              <th>Item Name</th>
+              <th>Event Name</th>
               <th>Detalhes</th>
               <th>Editar</th>
               <th>Eliminar</th>
@@ -20,14 +20,14 @@
           </thead>
           <tbody>
 
-            <% for(var i=0; i<items.length;i++) { %>
+            <% for(var i=0; i<events.length;i++) { %>
               <tr>
                 <td> <%=i%> </td>
-                <td> <%=items[i]._id%></a></td>
-                <td> <%= items[i].name%></a></td>
-                <td><a href="/items/show/<%= items[i]._id%> "> Ver </td>
-                <td><a href="/items/edit/<%= items[i]._id%> "> Editar </a></td>
-                <td><a href="/items/delete/<%= items[i]._id%> "> Eliminar </a></td>
+                <td> <%=events[i]._id%></a></td>
+                <td> <%= events[i].name%></a></td>
+                <td><a href="/events/show/<%= events[i]._id%> "> Ver </td>
+                <td><a href="/events/edit/<%= events[i]._id%> "> Editar </a></td>
+                <td><a href="/events/delete/<%= events[i]._id%> "> Eliminar </a></td>
               </tr>
             <% } %>
           </tbody>
@@ -36,6 +36,6 @@
         <div>No employees found.</div>
       <% } %>
     </div>
-    <h3><a href="/items/create">Criar novo Item</a></h3>
+    <h3><a href="/events/create">Criar novo Event</a></h3>
   </body>
 </html>

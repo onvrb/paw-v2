@@ -7,12 +7,12 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
-var itemsRouter = require('./routes/items');
+var eventsRouter = require('./routes/events');
 const { log } = require('console');
 
 mongoose.Promise = global.Promise
 
-mongoose.connect('mongodb://localhost/items')
+mongoose.connect('mongodb+srv://paw:Wf6U8cKipS7aa2EV@cluster0.lxdxs.mongodb.net/paw?ssl=true', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=> console.log(' connected to DB!'))
   .catch(()=> console.log(' error connecting to DB!'))
 
@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/items', itemsRouter);
+app.use('/events', eventsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
