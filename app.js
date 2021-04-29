@@ -11,6 +11,7 @@ var eventsRouter = require('./routes/events');
 const { log } = require('console');
 
 mongoose.Promise = global.Promise
+mongoose.set('useCreateIndex', true);
 
 mongoose.connect('mongodb+srv://paw:Wf6U8cKipS7aa2EV@cluster0.lxdxs.mongodb.net/paw?ssl=true', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=> console.log(' connected to DB!'))
