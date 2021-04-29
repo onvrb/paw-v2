@@ -14,21 +14,44 @@
               <td>Id</td>
               <td>:</td>
               <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
-              <td><input type="hidden" name="_id" id="_id" value="<%= event._id %>"><%= event.name %></td>
+              <td><input type="hidden" name="_id" id="_id" value="<%= event._id %>"><%= event._id %></td>
               </tr>
           <tr>
               <td>Name</td>
               <td>:</td>
               <td><input type="text" name="name" id="name" value="<%= event.name %>"></td>
             </tr>
-            
             <tr>
-              <td>Quantity</td>
+              <td>Description</td>
               <td>:</td>
-              <td><input type="text" name="quantity" id="quantity" value="<%= event.quantity %>"></td>
+              <td><input type="text" name="description" id="description" value="<%= event.description %>"></td>
             </tr>
             <tr>
-              <td colspan="2"><button type="submit">Edit</button></td>
+              <td>Poster image (URL)</td>
+              <td>:</td>
+              <td><input type="text" name="poster" id="poster" value="<%= event.poster %>"></td>
+            </tr>
+            <tr>
+              <td>Number of tickets available</td>
+              <td>:</td>
+              <td><input type="number" name="nTicketsAvailable" id="nTicketsAvailable" value="<%= event.nTicketsAvailable %>"></td>
+            </tr>
+          <tr>
+            <td>Number of tickets purchased</td>
+            <td>:</td>
+            <!-- Numero de bilhetes comprados não podem ser mudados -->
+            <td><input type="hidden" name="event.nTicketsPurchased" id="event.nTicketsPurchased" value="<%= event.nTicketsPurchased %>">
+              <%= event.nTicketsPurchased %>
+            </td>
+          </tr>
+          <tr>
+            <tr>
+              <td>Price</td>
+              <td>:</td>
+              <td><input type="number" name="price" id="price" value="<%= event.price %>"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Save edit</button></td>
             </tr>
           </tbody>
         </table>

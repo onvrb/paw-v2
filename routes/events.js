@@ -9,5 +9,5 @@ router.post('/create', eventController.create);
 router.get('/edit/:id', eventController.formEdit);
 router.post('/edit/:id', eventController.edit);
 router.get('/delete/:id', eventController.delete );
-  
+
 module.exports = router;

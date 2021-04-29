@@ -15,7 +15,7 @@
               <th>Event Name</th>
               <th>Detalhes</th>
               <th>Editar</th>
-              <th>Eliminar</th>
+              <th>Eliminar</th> <!-- use for debug -->
             </tr>
           </thead>
           <tbody>
@@ -27,13 +27,13 @@
                 <td> <%= events[i].name%></a></td>
                 <td><a href="/events/show/<%= events[i]._id%> "> Ver </td>
                 <td><a href="/events/edit/<%= events[i]._id%> "> Editar </a></td>
-                <td><a href="/events/delete/<%= events[i]._id%> "> Eliminar </a></td>
+                <td><a href="/events/delete/<%= events[i]._id%> "> Eliminar </a></td> <!-- use for debug -->
               </tr>
             <% } %>
           </tbody>
         </table>
       <% } else { %>
-        <div>No employees found.</div>
+        <div>No events found.</div>
       <% } %>
     </div>
     <h3><a href="/events/create">Criar novo Event</a></h3>

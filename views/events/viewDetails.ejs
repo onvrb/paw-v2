@@ -21,13 +21,35 @@
           </tr>
           
           <tr>
-            <td>Quantity</td>
+            <td>Description</td>
             <td>:</td>
-            <td>$<%= event.quantity %> </td>
+            <td><%= event.description %> </td>
           </tr>
+          <tr>
+            <td>Poster image (URL)</td>
+            <td>:</td>
+            <td><%= event.poster %> </td>
+          </tr>
+          <tr>
+            <td>Number of tickets available</td>
+            <td>:</td>
+            <td><%= event.nTicketsAvailable %> </td>
+          </tr>
+          <tr>
+            <td>Number of tickets purchased</td>
+            <td>:</td>
+            <td><%= event.nTicketsPurchased %> </td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>:</td>
+            <td><%= event.price %> </td>
+          </tr>
+
         </tbody>
       </table>
     </div>
+    <h3><a href="/events/edit/<%= event._id%> "> Editar </a></h3>
     <h3><a href="/events">Ver todos os event</a></h3>
   </body>
 </html>
