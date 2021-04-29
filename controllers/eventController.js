@@ -38,8 +38,15 @@ eventController.create = function(req,res){
     var event = new Event(req.body);
     event.save((err)=>{
         if (err){
-            console.log('Erro a gravar');
-            res.redirect('/error')
+            // console.log('Erro a gravar');
+            // if (err.code === 11000) { // duplicate key error collection
+            //     console.log('entou 1');
+            //     res.render('/error', { message: "Já existe um evento com esse nome." });
+            // }
+            // else{
+                console.log('entou 2');
+                res.redirect('/error')
+            // }
         } else {
             res.redirect('/events');
         }
