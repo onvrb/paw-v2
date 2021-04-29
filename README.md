@@ -6,9 +6,9 @@ Demo criada na aula teórico prática sobre Base de Dados em aplicações web.
 ## Iniciar projeto
 
 Antes de usar o projeto deve:
-* Ter uma instância MongoDB a correr localmente. Em alternativa pode editar a string de conexão à base de dados por uma do MongoAtlas;
+* Editar a string de conexão à base de dados MongoDB (em `~/app.js`);
 * Ter o runtime NodeJS instalado no seu computador;
-* Executar o comando `npm install` para instalar todas as depências do projeto localmente após o comando `git clone` deste projeto;
+* Executar o comando `npm ci` para instalar todas as depências do projeto localmente após o comando `git clone` deste projeto;
 
 ## Funcionamento do projeto
 
