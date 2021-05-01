@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Location List</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Location List</h1>
+      <% if(locations.length>0) { %>
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Id</th>
+              <th>Location Name</th>
+              <th>Address</th>
+              <th>Capacity</th>
+              <th>Limit</th>
+              <th>Details</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% for(var i=0; i<locations.length;i++) { %>
+              <tr>
+                <td> <%=i%> </td>
+                <td> <%=locations[i]._id%></a></td>
+                <td> <%=locations[i].name%></a></td>
+                <td> <%=locations[i].address%></a></td>
+                <td> <%=locations[i].capacity%></a></td>
+                <td> <%=locations[i].limit%></a></td>
+                <td><a href="/locations/<%= locations[i]._id%> "> View </td>
+                <td><a href="/locations/edit/<%= locations[i]._id%> "> Edit</a></td>
+                <td><a href="/locations/delete/<%= locations[i]._id%> "> Delete </a></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <div>No locations found.</div>
+      <% } %>
+    </div>
+    <h3><a href="/locations/create/form">Create a new Location</a></h3>
+    <h3><a href="javascript: history.back()">Return</a></h3>
+    <h3><a href="/">Go back to index</a></h3>
+  </body>
+</html>

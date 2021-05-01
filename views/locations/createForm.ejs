@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Location</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create New Location</h1>
+      <form action="/locations/create" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td><input type="text" name="name" required /></td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td><input type="text" name="address" required /></td>
+            </tr>
+            <tr>
+              <td>Capacity</td>
+              <td><input type="number" name="capacity" required /></td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td>Limit</td>
+              <td><input type="number" name="limit" required /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Create</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+    <h3><a href="javascript: history.back()">Return</a></h3>
+  </body>
+</html>

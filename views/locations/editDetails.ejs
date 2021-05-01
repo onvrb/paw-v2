@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Location Detail</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Location Detail</h1>
+      <form action="/locations/edit/<%=location._id%>" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Id</td>
+              <td>:</td>
+              <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
+              <td>
+                <input
+                  type="hidden"
+                  name="_id"
+                  id="_id"
+                  value="<%= location._id %>"
+                /><%= location._id %>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Name</td>
+              <td>:</td>
+              <td>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  value="<%= location.name %>"
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Address</td>
+              <td>:</td>
+              <td>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  required
+                  value="<%= location.address %>"
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Capacity</td>
+              <td>:</td>
+              <td>
+                <input
+                  type="number"
+                  name="capacity"
+                  id="capacity"
+                  required
+                  value="<%= location.capacity %>"
+                />
+              </td>
+            </tr>
+
+            <tr>
+                <td>Limit</td>
+                <td>:</td>
+                <td>
+                  <input
+                    type="number"
+                    name="limit"
+                    id="limit"
+                    required
+                    value="<%= location.limit %>"
+                  />
+                </td>
+              </tr>
+
+            <tr>
+              <td colspan="2"><button type="submit">Edit</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+    <h3><a href="/locations">Ver todos os location</a></h3>
+    <h3><a href="javascript: history.back()">Voltar atrás</a></h3>
+  </body>
+</html>
