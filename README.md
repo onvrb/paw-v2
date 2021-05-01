@@ -35,3 +35,7 @@ Para correr a aplicação é necessário executar o comando:
 O projeto foi criado sem recursos a formatação `CSS` e não tem o objetivo de ser uma demonstração completa de como uma aplicação deve ser construída e estilizada.
 
 Desta forma o projeto aqui representado é o produto minímo viável para integrar o acesso a uma base de dados numa aplicação Web usando o padrão de software MVC.
+
+## Debugging
+
+No caso de comentar os *debug errors*, deve também apagar a linha 2 e 3 do ficheiro `~/views/error.ejs`.
