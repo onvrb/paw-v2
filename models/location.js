@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var LocationSchema = new mongoose.Schema({
-    name: String,
+    name: {type: String, unique: true},
     address: String,
     capacity: Number,
     limit: Number

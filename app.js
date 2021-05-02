@@ -3,12 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var mongoose = require('mongoose');
+var expressLayouts = require('express-ejs-layouts');
 
 var indexRouter = require('./routes/index');
 var eventsRouter = require('./routes/events');
 var locationsRouter = require('./routes/locations');
+var ticketsRouter = require('./routes/tickets');
+
 const { log } = require('console');
 
 mongoose.Promise = global.Promise
@@ -21,7 +23,8 @@ mongoose.connect('mongodb+srv://paw:Wf6U8cKipS7aa2EV@cluster0.lxdxs.mongodb.net/
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.use(expressLayouts);
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -33,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/events', eventsRouter);
 app.use('/locations', locationsRouter);
+app.use('/tickets', ticketsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

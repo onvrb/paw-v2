@@ -1,38 +1,50 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Create Location</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Create New Location</h1>
-      <form action="/locations/create" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Name</td>
-              <td><input type="text" name="name" required /></td>
-            </tr>
-            <tr>
-              <td>Address</td>
-              <td><input type="text" name="address" required /></td>
-            </tr>
-            <tr>
-              <td>Capacity</td>
-              <td><input type="number" name="capacity" required /></td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td>Limit</td>
-              <td><input type="number" name="limit" required /></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Create</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+<div class="container p-3">
+  <h3>Create Location</h3>
+  <form action="/locations/create" method="post">
+    <div class="form-group row">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Name of location..."
+        name="name"
+        required
+      />
     </div>
-    <h3><a href="javascript: history.back()">Return</a></h3>
-  </body>
-</html>
+    <div class="form-group row">
+      <label for="address">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="Address of location..."
+        name="address"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="capacity">Capacity</label>
+      <input
+        type="number"
+        class="form-control"
+        id="capacity"
+        placeholder="Capacity of location..."
+        name="capacity"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="limit">Limit</label>
+      <input
+        type="number"
+        class="form-control"
+        id="limit"
+        placeholder="Limit of location..."
+        name="limit"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+  </form>
+</div>

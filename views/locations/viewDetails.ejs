@@ -1,48 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Location Detail</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Location Detail</h1>
-      <table>
-        <tbody>
-        <tr>
-            <td>Id</td>
-            <td>:</td>
-            <td><%= location._id %></td>
-            </tr>
-
-            <tr>
-                <td>Location Name</td>
-                <td>:</td>
-                <td><%= location.name %></td>
-              </tr>
-
-        <tr>
-            <td>Address</td>
-            <td>:</td>
-            <td><%= location.address %></td>
-          </tr>
-          
-          <tr>
-            <td>Capacity</td>
-            <td>:</td>
-            <td><%= location.capacity %> </td>
-          </tr>
-          <tr>
-            <td>Limit</td>
-            <td>:</td>
-            <td><%= location.limit %> </td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">Location Details</div>
+    <div class="card-body">
+      <h5 class="card-title"><%= location.name %></h5>
+      <p class="card-text"><%= location.address %></p>
+      <p class="card-text"><%= location.capacity %></p>
+      <p class="card-text"><%= location.limit %>%</p>
     </div>
-    <h3><a href="/locations">See all locations</a></h3>
-    <h3><a href="javascript: history.back()">Return</a></h3>
-    <h3><a href="/">Go back to index</a></h3>
-  </body>
-</html>
-
+  </div>
+</div>
