@@ -10,9 +10,9 @@
               <th scope="col">Address</th>
               <th scope="col">Capacity</th>
               <th scope="col">Limit</th>
-              <th scope="col">Details</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -24,7 +24,7 @@
                 <td> <%=locations[i].address%></a></td>
                 <td> <%=locations[i].capacity%></a></td>
                 <td> <%=locations[i].limit%>%</a></td>
-                <td><a href="/locations/<%= locations[i]._id%> "> View </td>
+                <td><a href="/locations/show/<%= locations[i]._id%> "> View Details </td>
                 <td><a href="/locations/edit/<%= locations[i]._id%> "> Edit</a></td>
                 <td><a href="/locations/delete/<%= locations[i]._id%> "> Delete </a></td>
               </tr>

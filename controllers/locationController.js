@@ -8,10 +8,7 @@ locationController.showAll = async function (req, res) {
     var locations = await Location.find();
     res.render("locations/listAll", { locations: locations });
   } catch (error) {
-    res.render("error", {
-      message: "Error showing all locations",
-      error: error,
-    });
+    res.render("error", { message: "Error showing all locations", error: error,});
   }
 };
 
@@ -54,7 +51,7 @@ locationController.edit = async function (req, res) {
   let id = req.params.id;
   try {
     await Location.findOneAndUpdate({ _id: id }, body);
-    res.redirect("/locations/" + id);
+    res.redirect("/locations/show/" + id);
   } catch (error) {
     res.render("./error", { message: "Error editing location", error: error });
   }

@@ -1,0 +1,56 @@
+<div class="container p-3">
+    <h3>Edit User</h3>
+    <form action="/users/edit/<%=user._id%>" method="post">
+      <div class="form-group row">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="User name..."
+          name="name"
+          required
+          value="<%= user.name %>"
+        />
+      </div>
+      <div class="form-group row">
+        <label for="address">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email..."
+          name="email"
+          required
+          value="<%= user.email %>"
+        />
+      </div>
+      <div class="form-group row">
+        <label for="capacity">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password..."
+          name="password"
+          required
+          value="<%= user.password %>"
+        />
+      </div>
+      <div class="form-check mt-1">
+        <label class="form-check-label" for="covid">
+           Covid test
+          </label>
+        <input class="form-check-input" type="checkbox" name="covid" value="true" <% if(user.covid){ %> checked <% } %> id="covid">
+      </div>
+      <div class="form-check mt-1">
+        <label class="form-check-label" for="banned">
+           Banned
+          </label>
+        <input class="form-check-input" type="checkbox" name="banned" value="true" <% if(user.banned){ %> checked <% } %> id="banned">
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Edit</button>
+    </form>
+  </div>
+  

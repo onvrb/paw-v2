@@ -2,10 +2,21 @@
   <div class="card">
     <div class="card-header">Location Details</div>
     <div class="card-body">
-      <h5 class="card-title"><%= location.name %></h5>
-      <p class="card-text"><%= location.address %></p>
-      <p class="card-text"><%= location.capacity %></p>
-      <p class="card-text"><%= location.limit %>%</p>
+      <h5 class="card-title">
+        <%= location.name %>
+      </h5>
+      <p class="card-text">
+        <label class="fw-bold"> Address:</label>
+        <%= location.address %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Capacity:</label>
+        <%= location.capacity %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Capacity Limit:</label>
+        <%= location.limit %>%
+      </p>
     </div>
   </div>
 </div>

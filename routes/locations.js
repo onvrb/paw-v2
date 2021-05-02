@@ -5,7 +5,7 @@ var locationController = require("../controllers/locationController");
 //ShowAll
 // mostra todos locations
 router.get("/", locationController.showAll);
-router.get("/:id", locationController.show);
+router.get("/show/:id", locationController.show);
 router.get("/create/form", locationController.formCreate);
 router.post("/create", locationController.create);
 router.get("/edit/:id", locationController.formEdit);
