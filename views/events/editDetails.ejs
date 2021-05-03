@@ -36,6 +36,16 @@
       </select>
     </div>
     <div class="form-group row">
+      <label for="promoters">Promoters</label>
+      <select multiple class="form-control" id="promoters" name="promoters" required>
+        <% for(var i=0; i<promoters.length;i++) { %>
+          <option value="<%= promoters[i]._id %>">
+            <%=promoters[i].name%>
+          </option>
+          <% } %>
+      </select>
+    </div>
+    <div class="form-group row">
       <label for="date">Date</label>
       <input
         type="date"

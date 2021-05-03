@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Event = require('../models/event'); //chama modelo de event
 var Location = require('../models/location'); //chama modelo de location
+var User = require('../models/user');
+var UserType = require('../models/userType');
 
 const eventController = {};
 
@@ -18,7 +20,8 @@ eventController.showAll = async function(req, res){
 eventController.show = async function (req, res){
     let id = req.params.id;
     try{
-        var event = await (Event.findOne({_id: id})).populate('location'); //popular o campo location com informação
+        var event = await (Event.findOne({_id: id})).populate('location').populate('promoters'); //popular o campo location com informação
+        console.log(event);
         res.render('events/viewDetails', {event: event});
     }catch (error) {
         res.render("error", { message: "Error finding event", error: error })
@@ -27,14 +30,19 @@ eventController.show = async function (req, res){
 
 // form para criar 1 event
 eventController.formCreate = async function(req,res){
+    var typePromoter = await UserType.findOne({type: 'Promoter'});
+    var promoters = await User.find({type: typePromoter._id});
     var locations = await Location.find();
-    res.render('events/createForm', {locations: locations});
+    res.render('events/createForm', { locations: locations, promoters: promoters });
 }
 
 // cria 1 event como resposta a um post de um form
 eventController.create = function (req, res) {
     var body = req.body;
     var event = new Event(body);
+    if(!Array.isArray(body.promoters)){
+        body.promoters = [body.promoters];
+    }
     body.nTicketsPurchased = 0;
     event.save((err) => {
         console.log(err);
@@ -63,8 +71,10 @@ eventController.formEdit = async function (req, res) {
     let id = req.params.id;
     try {
         var event = await Event.findOne({ _id: id }).populate('location');
+        var typePromoter = await UserType.findOne({type: 'Promoter'});
+        var promoters = await User.find({type: typePromoter._id});
         var locations = await Location.find();
-        res.render("events/editDetails", { event: event, locations: locations });
+        res.render("events/editDetails", { event: event, locations: locations, promoters: promoters });
     } catch (error) {
         res.render("./error", { message: "Error finding event", error: error });
     }
@@ -73,7 +83,10 @@ eventController.formEdit = async function (req, res) {
 //Event edit post
 eventController.edit = async function (req, res) {
     let body = req.body;
-    let id = req.params.id;  
+    let id = req.params.id; 
+    if(!Array.isArray(body.promoters)){
+        body.promoters = [body.promoters];
+    }
     try {
         await Event.findOneAndUpdate({ _id: id }, body);
         res.redirect("/events/show/" + id);

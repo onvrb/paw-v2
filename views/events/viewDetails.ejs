@@ -21,6 +21,14 @@
         <label class="fw-bold"> Location:</label>
         <%= event.location.name %>
       </p>
+      <ul class="list-group mb-2">
+        <label class="fw-bold"> Promoters:</label>
+        <% for(var i=0; i<event.promoters.length;i++) { %>
+          <li class="list-group-item">
+            <%=event.promoters[i].name%>
+          </li>
+          <% } %>
+      </ul>
       <p class="card-text">
         <label class="fw-bold"> Poster image:</label>
         <a href="<%= event.poster %>"><img src="<%= event.poster %>" alt="<%= event.poster %>" width="auto" height="100"></a>
