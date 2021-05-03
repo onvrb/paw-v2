@@ -5,7 +5,7 @@ var UserSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   name: String,
   password: String,
-  type: { type: Schema.Types.ObjectId, ref: 'UserType' },
+  type: { type: Schema.Types.ObjectId, ref: 'UserType' }, //para importar a referencia de userType
   covid: Boolean,
   banned: Boolean,
 });

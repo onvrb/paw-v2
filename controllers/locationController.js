@@ -4,6 +4,7 @@ var Event = require('../models/event');
 
 var locationController = {};
 
+//Shows all locations
 locationController.showAll = async function (req, res) {
   try {
     var locations = await Location.find();
@@ -13,6 +14,7 @@ locationController.showAll = async function (req, res) {
   }
 };
 
+//Shows one location
 locationController.show = async function (req, res) {
   let id = req.params.id;
   try {
@@ -23,10 +25,12 @@ locationController.show = async function (req, res) {
   }
 };
 
+//Location creating form
 locationController.formCreate = async function (req, res) {
   res.render("locations/createForm");
 };
 
+//Location post
 locationController.create = async function (req, res) {
   let body = req.body;
   try {
@@ -37,6 +41,7 @@ locationController.create = async function (req, res) {
   }
 };
 
+//Location editing form
 locationController.formEdit = async function (req, res) {
   let id = req.params.id;
   try {
@@ -47,6 +52,7 @@ locationController.formEdit = async function (req, res) {
   }
 };
 
+//Location edit post
 locationController.edit = async function (req, res) {
   let body = req.body;
   let id = req.params.id;
@@ -58,6 +64,7 @@ locationController.edit = async function (req, res) {
   }
 };
 
+//Delete location
 locationController.delete = async function (req, res) {
   let id = req.params.id;
   try {

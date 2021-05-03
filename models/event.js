@@ -6,7 +6,7 @@ var EventSchema = new mongoose.Schema({
     description: String,
     date: String, // tem de ser string, caso seja Date ao editar vem vazio
     time: String,
-    location: { type: Schema.Types.ObjectId, ref: 'Location' },
+    location: { type: Schema.Types.ObjectId, ref: 'Location' }, //para importar a referencia de location
     poster: String,
     nTicketsAvailable: Number,
     nTicketsPurchased: Number,

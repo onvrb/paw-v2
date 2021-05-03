@@ -7,7 +7,7 @@ var userController = {};
 // vai buscar todas as accounts
 userController.showAll = async function (req, res) {
   try {
-    var users = await User.find().populate('type');
+    var users = await User.find().populate('type'); //popular o campo type com informação
     res.render("users/listAll", { users: users });
   } catch (error) {
     res.render("error", { message: "Error finding users", error: error });
@@ -18,7 +18,7 @@ userController.showAll = async function (req, res) {
 userController.show = async function (req, res) {
   let id = req.params.id;
   try {
-    var user = await User.findOne({ _id: id }).populate('type');
+    var user = await User.findOne({ _id: id }).populate('type'); //popular o campo type com informação
     console.log(user);
     res.render("users/viewDetails", { user: user });
   } catch (error) {

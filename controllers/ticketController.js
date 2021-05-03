@@ -1,3 +1,6 @@
+// not finished
+// o que seria melhor: separar controller em serviços? 
+
 var mongoose = require("mongoose");
 var Ticket = require("../models/ticket");
 

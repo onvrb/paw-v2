@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
-var Event = require('../models/event');
-var Location = require('../models/location');
+var Event = require('../models/event'); //chama modelo de event
+var Location = require('../models/location'); //chama modelo de location
 
 const eventController = {};
 
 // mostra todos events 
 eventController.showAll = async function(req, res){
     try {
-        var events = await Event.find().populate('location');
+        var events = await Event.find().populate('location'); //popular o campo location com informação
         res.render('events/listAll', {events: events});
     } catch (error){
         res.render("error", { message: "Error finding events", error: error });
@@ -18,7 +18,7 @@ eventController.showAll = async function(req, res){
 eventController.show = async function (req, res){
     let id = req.params.id;
     try{
-        var event = await (Event.findOne({_id: id})).populate('location');
+        var event = await (Event.findOne({_id: id})).populate('location'); //popular o campo location com informação
         res.render('events/viewDetails', {event: event});
     }catch (error) {
         res.render("error", { message: "Error finding event", error: error })
@@ -58,6 +58,7 @@ eventController.create = function (req, res) {
     })
 };
 
+//Event edit form
 eventController.formEdit = async function (req, res) {
     let id = req.params.id;
     try {
@@ -69,6 +70,7 @@ eventController.formEdit = async function (req, res) {
     }
 };
 
+//Event edit post
 eventController.edit = async function (req, res) {
     let body = req.body;
     let id = req.params.id;  
@@ -81,7 +83,7 @@ eventController.edit = async function (req, res) {
 };
 
 
-// elimina 1 event
+//Delete event
 eventController.delete = function(req, res){
     Event.remove({_id:req.params.id}).exec((err)=>{
         if (err){
