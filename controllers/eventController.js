@@ -5,28 +5,24 @@ var Location = require('../models/location');
 const eventController = {};
 
 // mostra todos events 
-eventController.showAll = function(req, res){
-    Event.find({}).exec((err, dbevents)=>{
-        if (err){
-            console.log('Erro a ler');
-            res.redirect('/error')
-        } else {
-            console.log(dbevents);
-            res.render('events/listAll', {events: dbevents});
-        }
-    })
+eventController.showAll = async function(req, res){
+    try {
+        var events = await Event.find().populate('location');
+        res.render('events/listAll', {events: events});
+    } catch (error){
+        res.render("error", { message: "Error finding events", error: error });
+    }
 }
 
 // mostra 1 event por id
-eventController.show = function(req, res){
-    Event.findOne({_id:req.params.id}).exec((err, dbevent)=>{
-        if (err){
-            console.log('Erro a ler');
-            res.redirect('/error')
-        } else {
-            res.render('events/viewDetails', {event: dbevent});
-        }
-    })
+eventController.show = async function (req, res){
+    let id = req.params.id;
+    try{
+        var event = await (Event.findOne({_id: id})).populate('location');
+        res.render('events/viewDetails', {event: event});
+    }catch (error) {
+        res.render("error", { message: "Error finding event", error: error })
+    }
 }
 
 // form para criar 1 event
@@ -38,12 +34,10 @@ eventController.formCreate = async function(req,res){
 // cria 1 event como resposta a um post de um form
 eventController.create = function (req, res) {
     var body = req.body;
-    var location = body.location;
-    body.location = { name: location};
-    console.log(body);
     var event = new Event(body);
     body.nTicketsPurchased = 0;
     event.save((err) => {
+        console.log(err);
         if (err) {
             console.log('Erro a gravar');
             if (err.code === 11000) { // duplicate key error collection
@@ -67,7 +61,7 @@ eventController.create = function (req, res) {
 eventController.formEdit = async function (req, res) {
     let id = req.params.id;
     try {
-        var event = await Event.findOne({ _id: id });
+        var event = await Event.findOne({ _id: id }).populate('location');
         var locations = await Location.find();
         res.render("events/editDetails", { event: event, locations: locations });
     } catch (error) {
@@ -77,9 +71,7 @@ eventController.formEdit = async function (req, res) {
 
 eventController.edit = async function (req, res) {
     let body = req.body;
-    let location = body.location;
-    let id = req.params.id;
-    body.location = { name: location};    
+    let id = req.params.id;  
     try {
         await Event.findOneAndUpdate({ _id: id }, body);
         res.redirect("/events/show/" + id);

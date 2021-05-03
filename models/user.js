@@ -1,11 +1,11 @@
 var mongoose = require("mongoose");
-var UserType = require('./userType').schema;
+const Schema = mongoose.Schema;
 
 var UserSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   name: String,
   password: String,
-  type: UserType,
+  type: { type: Schema.Types.ObjectId, ref: 'UserType' },
   covid: Boolean,
   banned: Boolean,
 });

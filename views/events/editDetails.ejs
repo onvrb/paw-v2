@@ -29,7 +29,7 @@
       <label for="location">Location</label>
       <select class="form-control" name="location" required>
         <% for(var i=0; i<locations.length;i++) { %>
-          <option value="<%= locations[i].name %>" <% if(locations[i].name == event.location.name){ %> selected <% } %>>
+          <option value="<%= locations[i]._id %>" <% if(locations[i].name == event.location.name){ %> selected <% } %>>
             <%=locations[i].name%>
           </option>
           <% } %>

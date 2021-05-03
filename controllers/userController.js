@@ -7,7 +7,7 @@ var userController = {};
 // vai buscar todas as accounts
 userController.showAll = async function (req, res) {
   try {
-    var users = await User.find();
+    var users = await User.find().populate('type');
     res.render("users/listAll", { users: users });
   } catch (error) {
     res.render("error", { message: "Error finding users", error: error });
@@ -18,7 +18,8 @@ userController.showAll = async function (req, res) {
 userController.show = async function (req, res) {
   let id = req.params.id;
   try {
-    var user = await User.findOne({ _id: id });
+    var user = await User.findOne({ _id: id }).populate('type');
+    console.log(user);
     res.render("users/viewDetails", { user: user });
   } catch (error) {
     res.render("error", { message: "Error finding user", error: error });
@@ -44,36 +45,15 @@ userController.create = async function (req, res) {
       res.render("error", { message: "Email already exists", error: {} });
     } else {
       var body = req.body;
-      var type = req.body.type;
-      body.type = { type: type };
       body.covid = false;
       body.banned = false;
-
+      console.log(body)
       user = await new User(req.body).save();
       res.redirect("/users");
     }
   } catch (error) {
     res.render("error", { message: "Error registering user", error: error });
   }
-  return;
-
-  account = new Account(req.body);
-  account.save((err, doc) => {
-    if (err) {
-      console.log(err);
-      if (err.code === 11000) {
-        // duplicate key error collection
-        res.render("error", {
-          message:
-            "Email já se encontra registado, efetue login ou utilize um email diferente.",
-        });
-      } else {
-        res.render("error", { message: err });
-      }
-    } else {
-      res.redirect("/accounts/show/" + doc._id);
-    }
-  });
 };
 
 // mostra 1 account para edicao

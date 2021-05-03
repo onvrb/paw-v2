@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
-var Location = require('./location').schema;
+const Schema = mongoose.Schema;
 
 var EventSchema = new mongoose.Schema({
     name: { type: String, unique: true},
     description: String,
     date: String, // tem de ser string, caso seja Date ao editar vem vazio
     time: String,
-    location: Location,
+    location: { type: Schema.Types.ObjectId, ref: 'Location' },
     poster: String,
     nTicketsAvailable: Number,
     nTicketsPurchased: Number,
