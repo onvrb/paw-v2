@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var Event = require('../models/event');
+var Location = require('../models/location');
 
-var eventController = {};
+const eventController = {}
 
 // mostra todos events 
 eventController.showAll = function(req, res){
@@ -29,8 +30,9 @@ eventController.show = function(req, res){
 }
 
 // form para criar 1 event
-eventController.formCreate = function(req,res){
-    res.render('events/createForm');
+eventController.formCreate = async function(req,res){
+    var locations = await Location.find();
+    res.render('events/createForm', {locations: locations});
 }
 
 // cria 1 event como resposta a um post de um form
