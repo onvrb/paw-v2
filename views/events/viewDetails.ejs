@@ -1,56 +1,43 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Event Detail</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Event Detail</h1>
-      <table>
-        <tbody>
-        <tr>
-            <td>Id</td>
-            <td>:</td>
-            <td><%= event._id %></td>
-            </tr>
-        <tr>
-            <td>Name</td>
-            <td>:</td>
-            <td><%= event.name %></td>
-          </tr>
-          
-          <tr>
-            <td>Description</td>
-            <td>:</td>
-            <td><%= event.description %> </td>
-          </tr>
-          <tr>
-            <td>Poster image (URL)</td>
-            <td>:</td>
-            <td><%= event.poster %> </td>
-          </tr>
-          <tr>
-            <td>Number of tickets available</td>
-            <td>:</td>
-            <td><%= event.nTicketsAvailable %> </td>
-          </tr>
-          <tr>
-            <td>Number of tickets purchased</td>
-            <td>:</td>
-            <td><%= event.nTicketsPurchased %> </td>
-          </tr>
-          <tr>
-            <td>Price</td>
-            <td>:</td>
-            <td><%= event.price %> </td>
-          </tr>
-
-        </tbody>
-      </table>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">Event Details</div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= event.name %>
+      </h5>
+      <p class="card-text">
+        <label class="fw-bold"> Description:</label>
+        <%= event.description %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Date:</label>
+        <%= event.date %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Time:</label>
+        <%= event.time %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Location:</label>
+        <%= event.locationName %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Poster image:</label>
+        <img src="<%= event.poster %>" alt="<%= event.poster %>" width="auto" height="100">
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Tickets Available:</label>
+        <%= event.nTicketsAvailable %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Tickets Purchased:</label>
+        <%= event.nTicketsPurchased %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Price:</label>
+        <%= event.price %>
+      </p>
     </div>
-    <h3><a href="/events/edit/<%= event._id%> "> Editar </a></h3>
-    <h3><a href="/events">Ver todos os event</a></h3>
-  </body>
-</html>
-
+  </div>
+  <a class="btn btn-primary" href="/events/edit/<%= event._id%>">Edit this event</a>
+</div>

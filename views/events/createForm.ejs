@@ -1,53 +1,105 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Create Event</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Create New Event</h1>
-      <form action="/events/create" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Name</td>
-              <td><input type="text" name="name" required/></td>
-            </tr>
-            <tr>
-              <td>Description</td>
-              <td><input type="text" name="description" required/></td>
-            </tr> 
-            <tr>
-              <td>Date</td>
-              <td><input type="date" name="date" required/></td>
-            </tr>
-            <tr>
-              <td>Hour</td>
-              <td><input type="time" name="hour" required/></td>
-            </tr>
-            <tr>
-              <td>Poster image (URL)</td>
-              <td><input type="image" name="poster" required/></td>
-            </tr>
-            <tr>
-              <td>Number of tickets available</td>
-              <td><input type="number" name="nTicketsAvailable" required/></td>
-            </tr>
-            <tr>
-              <!-- Criar um evento com 0 bilhetes comprados inicialmente (hidden) -->
-              <td><input type="hidden" type="number" name="nTicketsPurchased" value="0" /></td>
-            </tr>
-            <tr>
-              <td>Price</td>
-              <td><input type="number" name="price" required/></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Create</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+<div class="container p-3">
+  <h3>Create Event</h3>
+  <form action="/events/create" method="post">
+    <div class="form-group row">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Name of event..."
+        name="name"
+        required
+      />
     </div>
-    <h3><a href="/events">Ver todos os events</a></h3>
-  </body>
-</html>
+    <div class="form-group row">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        placeholder="Description of event..."
+        name="description"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="locationName">Location</label>
+      <input
+        type="text"
+        class="form-control"
+        id="locationName"
+        placeholder="Location of event..."
+        name="locationName"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="date">Date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="date"
+        placeholder="Capacity of event..."
+        name="date"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="time">Time</label>
+      <input
+        type="time"
+        class="form-control"
+        id="time"
+        placeholder="Time for the event..."
+        name="time"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="poster">Poster image (URL)</label>
+      <input
+        type="text"
+        class="form-control"
+        id="poster"
+        placeholder="Poster image of event..."
+        name="poster"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="nTicketsAvailable">Number of tickets available</label>
+      <input
+        type="number"
+        class="form-control"
+        id="nTicketsAvailable"
+        placeholder="Number of tickets available..."
+        name="nTicketsAvailable"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="nTicketsPurchased"></label>
+      <input
+        type="hidden"
+        value="0"
+        class="form-control"
+        id="nTicketsPurchased"
+        name="nTicketsPurchased"
+        required
+      />
+    </div>
+    <div class="form-group row">
+      <label for="price">Price of the ticket</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        placeholder="Price of the ticket..."
+        name="price"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+  </form>
+</div>

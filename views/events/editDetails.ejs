@@ -1,63 +1,114 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Event Detail</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Event Detail</h1>
-      <form action="/events/edit/<%=event._id%>" method="post">
-        <table>
-          <tbody>
-          <tr>
-              <td>Id</td>
-              <td>:</td>
-              <!-- Como o id não pode ser alterado usamos o input hidden para o enviar como campo do formulário. -->
-              <td><input type="hidden" name="_id" id="_id" value="<%= event._id %>"><%= event._id %></td>
-              </tr>
-          <tr>
-              <td>Name</td>
-              <td>:</td>
-              <td><input type="text" name="name" id="name" value="<%= event.name %>"></td>
-            </tr>
-            <tr>
-              <td>Description</td>
-              <td>:</td>
-              <td><input type="text" name="description" id="description" value="<%= event.description %>"></td>
-            </tr>
-            <tr>
-              <td>Poster image (URL)</td>
-              <td>:</td>
-              <td><input type="text" name="poster" id="poster" value="<%= event.poster %>"></td>
-            </tr>
-            <tr>
-              <td>Number of tickets available</td>
-              <td>:</td>
-              <td><input type="number" name="nTicketsAvailable" id="nTicketsAvailable" value="<%= event.nTicketsAvailable %>"></td>
-            </tr>
-          <tr>
-            <td>Number of tickets purchased</td>
-            <td>:</td>
-            <!-- Numero de bilhetes comprados não podem ser mudados -->
-            <td><input type="hidden" name="event.nTicketsPurchased" id="event.nTicketsPurchased" value="<%= event.nTicketsPurchased %>">
-              <%= event.nTicketsPurchased %>
-            </td>
-          </tr>
-          <tr>
-            <tr>
-              <td>Price</td>
-              <td>:</td>
-              <td><input type="number" name="price" id="price" value="<%= event.price %>"></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Save edit</button></td>
-            </tr>
-          </tbody>
-        </table>
-    </form>
+<div class="container p-3">
+  <h3>Create Event</h3>
+  <form action="/events/edit/<%=event._id%>" method="post">
+    <div class="form-group row">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Name of event..."
+        name="name"
+        required
+        value="<%= event.name %>"
+      />
     </div>
-    <h3><a href="/events">Ver todos os event</a></h3>
-  </body>
-</html>
-
+    <div class="form-group row">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        placeholder="Description of event..."
+        name="description"
+        required
+        value="<%= event.description %>"
+      />
+    </div>
+    <div class="form-group row">
+      <label for="locationName">Location</label>
+      <input
+        type="text"
+        class="form-control"
+        id="locationName"
+        placeholder="Location of event..."
+        name="locationName"
+        required
+        value="<%= event.locationName %>"
+      />
+    </div>
+    <div class="form-group row">
+      <label for="date">Date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="date"
+        placeholder="Capacity of event..."
+        name="date"
+        required
+        value="<%= event.date %>"
+      />
+    </div>
+    <div class="form-group row">
+      <label for="time">Time</label>
+      <input
+        type="time"
+        class="form-control"
+        id="time"
+        placeholder="Time for the event..."
+        name="time"
+        required
+        value="<%= event.time %>"
+      />
+    </div>
+    <div class="form-group row">
+      <label for="poster">Poster image (URL)</label>
+      <input
+        type="text"
+        class="form-control"
+        id="poster"
+        placeholder="Poster image of event..."
+        name="poster"
+        required
+        value="<%= event.poster %>"
+      />
+    </div>
+    <div class="form-group row">
+      <label for="nTicketsAvailable">Number of tickets available</label>
+      <input
+        type="number"
+        class="form-control"
+        id="nTicketsAvailable"
+        placeholder="Number of tickets available..."
+        name="nTicketsAvailable"
+        required
+        value="<%= event.nTicketsAvailable %>"
+      />
+    </div>
+    <div class="form-group row">
+      <label for="nTicketsPurchased"></label>
+      <input
+        type="hidden"
+        value="0"
+        class="form-control"
+        id="nTicketsPurchased"
+        name="nTicketsPurchased"
+        required
+        value="<%= event.nTicketsPurchased %>"
+      />
+    </div>
+    <div class="form-group row">
+      <label for="price">Price of the ticket</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        placeholder="Price of the ticket..."
+        name="price"
+        required
+        value="<%= event.price %>"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Save changes</button>
+  </form>
+</div>
