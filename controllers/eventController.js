@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Event = require('../models/event');
 var Location = require('../models/location');
 
-const eventController = {}
+const eventController = {};
 
 // mostra todos events 
 eventController.showAll = function(req, res){
@@ -59,17 +59,29 @@ eventController.create = function (req, res) {
     })
 }
 
-// mostra 1 event para edicao
-eventController.formEdit = function(req, res){
-    Event.findOne({_id:req.params.id}).exec((err, dbevent)=>{
-        if (err){
-            console.log('Erro a ler');
-            res.redirect('/error')
-        } else {
-            res.render('events/editDetails', {event: dbevent});
-        }
-    })
-}
+// // mostra 1 event para edicao
+// eventController.formEdit = async function(req, res){
+//     Event.findOne({_id:req.params.id}).exec((err, dbevent)=>{
+//         if (err){
+//             console.log('Erro a ler');
+//             res.redirect('/error')
+//         } else {
+//             var locations = await Location.find();
+//             res.render('events/editDetails', { event: dbevent }, { locations: locations});
+//         }
+//     })
+// }
+
+eventController.formEdit = async function (req, res) {
+    let id = req.params.id;
+    try {
+        var event = await Event.findOne({ _id: id });
+        var locations = await Location.find();
+        res.render("events/editDetails", { event: event, locations: locations });
+    } catch (error) {
+        res.render("./error", { message: "Error finding event", error: error });
+    }
+};
 
 // edita 1 event como resposta a um post de um form editar
 // eventController.edit = function(req,res){
