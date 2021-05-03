@@ -15,6 +15,7 @@ var ticketsRouter = require("./routes/tickets");
 
 mongoose.Promise = global.Promise;
 mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 
 mongoose
   .connect(
