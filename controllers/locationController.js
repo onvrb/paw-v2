@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Location = require("../models/location");
+var Event = require('../models/event');
 
 var locationController = {};
 
@@ -60,8 +61,13 @@ locationController.edit = async function (req, res) {
 locationController.delete = async function (req, res) {
   let id = req.params.id;
   try {
-    var location = await Location.deleteOne({ _id: id });
-    res.redirect("/locations");
+    var events = await Event.find({location: id});
+    if (events.length) {
+      res.render("./error", { message: "Error deleting location. There are events at this location", error: {} });
+    }else {
+      await Location.deleteOne({ _id: id });
+      res.redirect("/locations");
+    }    
   } catch (error) {
     res.render("./error", { message: "Error deleting location", error: error });
   }
