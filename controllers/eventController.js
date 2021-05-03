@@ -42,6 +42,7 @@ eventController.create = function (req, res) {
     body.location = { name: location};
     console.log(body);
     var event = new Event(body);
+    body.nTicketsPurchased = 0;
     event.save((err) => {
         if (err) {
             console.log('Erro a gravar');
