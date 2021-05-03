@@ -2,15 +2,15 @@
   <h3>Edit Location</h3>
   <form action="/locations/edit/<%=location._id%>" method="post">
     <div class="form-group row">
-      <label for="locationname">Name</label>
+      <label for="name">Name</label>
       <input
         type="text"
         class="form-control"
         id="name"
         placeholder="Name of location..."
-        name="locationname"
+        name="name"
         required
-        value="<%= location.locationname %>"
+        value="<%= location.name %>"
       />
     </div>
     <div class="form-group row">
