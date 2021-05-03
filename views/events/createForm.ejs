@@ -33,9 +33,9 @@
         name="location"
         required
       /> -->
-      <select name="locationName">
+      <select name="location" class="form-control">
         <% for(var i=0; i<locations.length;i++) { %>
-          <option value="name">
+          <option value="<%=locations[i].name%>">
             <%=locations[i].name%>
           </option>
           <% } %>

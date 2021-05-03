@@ -6,7 +6,7 @@ var EventSchema = new mongoose.Schema({
     description: String,
     date: String, // tem de ser string, caso seja Date ao editar vem vazio
     time: String,
-    location: String,
+    location: Location,
     poster: String,
     nTicketsAvailable: Number,
     nTicketsPurchased: Number,

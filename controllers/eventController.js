@@ -37,7 +37,11 @@ eventController.formCreate = async function(req,res){
 
 // cria 1 event como resposta a um post de um form
 eventController.create = function (req, res) {
-    var event = new Event(req.body);
+    var body = req.body;
+    var location = body.location;
+    body.location = { name: location};
+    console.log(body);
+    var event = new Event(body);
     event.save((err) => {
         if (err) {
             console.log('Erro a gravar');
@@ -61,30 +65,22 @@ eventController.create = function (req, res) {
 
 // mostra 1 event para edicao
 eventController.formEdit = function(req, res){
-    Event.findOne({_id:req.params.id}).exec((err, dbevent)=>{
+    Event.findOne({_id:req.params.id}).exec(async (err, dbevent)=>{
+        var locations = await Location.find();
         if (err){
             console.log('Erro a ler');
             res.redirect('/error')
         } else {
-            res.render('events/editDetails', {event: dbevent});
+            res.render('events/editDetails', {event: dbevent, locations: locations});
         }
     })
 }
 
-// edita 1 event como resposta a um post de um form editar
-// eventController.edit = function(req,res){
-//     Event.findByIdAndUpdate(req.body._id, req.body, (err, editedEvent)=>{
-//         if (err){
-//             console.log('Erro a gravar');
-//             res.redirect('/error')
-//         } else {
-//             res.redirect('/events/show/'+req.body._id);
-//         }
-//     } )
-// }
 eventController.edit = async function (req, res) {
     let body = req.body;
+    let location = body.location;
     let id = req.params.id;
+    body.location = { name: location};    
     try {
         await Event.findOneAndUpdate({ _id: id }, body);
         res.redirect("/events/show/" + id);

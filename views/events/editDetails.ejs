@@ -1,5 +1,5 @@
 <div class="container p-3">
-  <h3>Create Event</h3>
+  <h3>Edit Event</h3>
   <form action="/events/edit/<%=event._id%>" method="post">
     <div class="form-group row">
       <label for="name">Name</label>
@@ -27,15 +27,13 @@
     </div>
     <div class="form-group row">
       <label for="location">Location</label>
-      <input
-        type="text"
-        class="form-control"
-        id="location"
-        placeholder="Location of event..."
-        name="location"
-        required
-        value="<%= event.location %>"
-      />
+      <select class="form-control" name="location" required>
+        <% for(var i=0; i<locations.length;i++) { %>
+          <option value="<%= locations[i].name %>" <% if(locations[i].name == event.location.name){ %> selected <% } %>>
+            <%=locations[i].name%>
+          </option>
+          <% } %>
+      </select>
     </div>
     <div class="form-group row">
       <label for="date">Date</label>
