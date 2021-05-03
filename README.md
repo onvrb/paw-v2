@@ -1,41 +1,20 @@
-# Demo Aula
+# Projeto de PAW
 
-Demo criada na aula teórico prática sobre Base de Dados em aplicações web.
-
+Este projeto foi desenvolvidoDemo no âmbito da Programação em Ambiente Web.
 
 ## Iniciar projeto
 
 Antes de usar o projeto deve:
-* Editar a string de conexão à base de dados MongoDB (em `~/app.js`);
+* Editar a string de conexão à base de dados MongoDB em `~/app.js` (opcional), ou usar a base de dados existente neste projeto (MongoDB Atlas) com as credenciais de um dos alunos envolvidos neste projeto.
 * Ter o runtime NodeJS instalado no seu computador;
-* Executar o comando `npm ci` para instalar todas as depências do projeto localmente após o comando `git clone` deste projeto;
+* Executar o comando `npm ci` ou `npm install` para instalar todas as depências do projeto localmente após o comando `git clone` deste projeto;
 
-## Funcionamento do projeto
+## Correr o projeto
 
-A aplicação aqui demonstrada executa as operações CRUD básicas de uma aplicação web que gere `items`.
-
-Os `items` são compostos por 3 campos:
-```
-{
-    _id: String,
-    name: String,
-    quantity: Number
-}
-```
-
-O campo `_id` é gerado automáticamene a cada save na base de dados.
-
-## Iniciar o projeto
-
-Para correr a aplicação é necessário executar o comando:
+Para correr a aplicação é basta executar o comando em baixo e aceder a `localhost:3000` no browser.
 * `npm start`
 
-## Observações
+## Diagrama
 
-O projeto foi criado sem recursos a formatação `CSS` e não tem o objetivo de ser uma demonstração completa de como uma aplicação deve ser construída e estilizada.
-
-Desta forma o projeto aqui representado é o produto minímo viável para integrar o acesso a uma base de dados numa aplicação Web usando o padrão de software MVC.
-
-## Debugging
-
-No caso de comentar os *debug errors*, deve também apagar a linha 2 e 3 do ficheiro `~/views/error.ejs`.
+`diagrama-milestone1.svg`
+<img src="diagrama-milestone1.svg">
