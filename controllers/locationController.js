@@ -28,6 +28,7 @@ locationController.formCreate = async function (req, res) {
 
 locationController.create = async function (req, res) {
   let body = req.body;
+  body.eventsScheduled = 0;
   try {
     var location = await Location.create(body);
     res.redirect("/locations");

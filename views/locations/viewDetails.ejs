@@ -17,6 +17,10 @@
         <label class="fw-bold"> Capacity Limit:</label>
         <%= location.limit %>%
       </p>
+      <p class="card-text">
+        <label class="fw-bold"> Events Scheduled:</label>
+        <%= location.eventsScheduled %>
+      </p>
     </div>
   </div>
   <a class="btn btn-primary" href="/locations/edit/<%= location._id%>">Edit this location</a>

@@ -4,7 +4,8 @@ var LocationSchema = new mongoose.Schema({
     name: {type: String, unique: true},
     address: String,
     capacity: Number,
-    limit: Number
+    limit: Number,
+    eventsScheduled: Number
 });
 
 module.exports = mongoose.model('Location', LocationSchema);

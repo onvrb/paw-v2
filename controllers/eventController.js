@@ -59,6 +59,9 @@ eventController.create = function (req, res) {
                 res.redirect('/error')
             }
         } else {
+            Location.findOneAndUpdate({ name: location.name }, { $inc: { eventsScheduled: 1 } },
+                () => { }  // callback não sei porquê, mas ele não executa sem cb
+            );
             res.redirect('/events');
         }
     })
