@@ -34,27 +34,15 @@ eventController.formCreate = function(req,res){
 }
 
 // cria 1 event como resposta a um post de um form
-eventController.create = function(req,res){
-    var event = new Event(req.body);
-    event.save((err)=>{
-        if (err){
-            console.log('Erro a gravar');
-            if (err.code === 11000) { // duplicate key error collection
-                console.log('entou 1');
-                res.render('error', {
-                    message: "Já existe um evento com esse nome.", 
-                    // });      // verbosed error / debug
-                error: err });  // verbosed error / debug
-            }
-            else{
-                console.log('entou 2');
-                res.redirect('/error')
-            }
-        } else {
-            res.redirect('/events');
-        }
-    })
-}
+eventController.create = async function (req, res) {
+    let body = req.body;
+    try {
+      var event = await Event.create(body);
+      res.redirect("/events");
+    } catch (error) {
+      res.render("./error", { message: "Error creating location", error: error });
+    }
+  };
 
 // mostra 1 event para edicao
 eventController.formEdit = function(req, res){
