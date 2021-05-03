@@ -4,13 +4,13 @@ var Location = require('./location').schema;
 var EventSchema = new mongoose.Schema({
     name: { type: String, unique: true},
     description: String,
-    date: String, // tem de ser string, caso seja Date ao editar vem vazio
-    time: String,
-    locationName: String,
+    locationname: Location,
     poster: String,
     nTicketsAvailable: Number,
     nTicketsPurchased: Number,
-    price: Number
+    price: Number,
+    date: String,
+    hour: String
 });
 
 module.exports = mongoose.model('Event', EventSchema);

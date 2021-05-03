@@ -69,27 +69,16 @@ eventController.formEdit = function(req, res){
 }
 
 // edita 1 event como resposta a um post de um form editar
-// eventController.edit = function(req,res){
-//     Event.findByIdAndUpdate(req.body._id, req.body, (err, editedEvent)=>{
-//         if (err){
-//             console.log('Erro a gravar');
-//             res.redirect('/error')
-//         } else {
-//             res.redirect('/events/show/'+req.body._id);
-//         }
-//     } )
-// }
-eventController.edit = async function (req, res) {
-    let body = req.body;
-    let id = req.params.id;
-    try {
-        await Event.findOneAndUpdate({ _id: id }, body);
-        res.redirect("/events/show/" + id);
-    } catch (error) {
-        res.render("./error", { message: "Error editing event", error: error });
-    }
-};
-
+eventController.edit = function(req,res){
+    Event.findByIdAndUpdate(req.body._id, req.body, (err, editedEvent)=>{
+        if (err){
+            console.log('Erro a gravar');
+            res.redirect('/error')
+        } else {
+            res.redirect('/events/show/'+req.body._id);
+        }
+    } )
+}
 
 // elimina 1 event
 eventController.delete = function(req, res){
