@@ -1,0 +1,39 @@
+    <div class="container mt-5">
+      <h1>Location List</h1>
+      <% if(locations.length>0) { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Id</th>
+              <th scope="col">Location Name</th>
+              <th scope="col">Address</th>
+              <th scope="col">Capacity</th>
+              <th scope="col">Limit</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0; i<locations.length;i++) { %>
+              <tr>
+                <td scope="row"> <%=i%> </td>
+                <td> <%=locations[i]._id%></a></td>
+                <td> <%=locations[i].name%></a></td>
+                <td> <%=locations[i].address%></a></td>
+                <td> <%=locations[i].capacity%></a></td>
+                <td> <%=locations[i].limit%>%</a></td>
+                <td><a href="/locations/show/<%= locations[i]._id%> "> View Details </td>
+                <td><a href="/locations/edit/<%= locations[i]._id%> "> Edit</a></td>
+                <td><a href="/locations/delete/<%= locations[i]._id%> "> Delete </a></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <div>No locations found.</div>
+      <% } %>
+      <a class="btn btn-primary" href="/locations/create/form">Create</a>
+    </div>
+    

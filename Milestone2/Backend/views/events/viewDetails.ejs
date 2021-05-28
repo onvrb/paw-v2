@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">Event Details</div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= event.name %>
+      </h5>
+      <p class="card-text">
+        <label class="fw-bold"> Description:</label>
+        <%= event.description %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Date:</label>
+        <%= event.date %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Time:</label>
+        <%= event.time %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Location:</label>
+        <%= event.location.name %>
+      </p>
+      <ul class="list-group mb-2">
+        <label class="fw-bold"> Promoters:</label>
+        <% for(var i=0; i<event.promoters.length;i++) { %>
+          <li class="list-group-item">
+            <%=event.promoters[i].name%>
+          </li>
+          <% } %>
+      </ul>
+      <p class="card-text">
+        <label class="fw-bold"> Poster image:</label>
+        <a href="<%= event.poster %>"><img src="<%= event.poster %>" alt="<%= event.poster %>" width="auto" height="100"></a>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Tickets Available:</label>
+        <%= event.nTicketsAvailable %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Tickets Purchased:</label>
+        <%= event.nTicketsPurchased %>
+      </p>
+      <p class="card-text">
+        <label class="fw-bold"> Price:</label>
+        <%= event.price %>
+      </p>
+    </div>
+  </div>
+  <a class="btn btn-primary" href="/events/edit/<%= event._id%>">Edit this event</a>
+</div>

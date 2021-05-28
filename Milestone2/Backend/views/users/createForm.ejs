@@ -1,0 +1,50 @@
+<div class="container p-3">
+    <h3>Register</h3>
+    <form action="/users/create" method="post">
+      <div class="form-group row">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="User name..."
+          name="name"
+          required
+        />
+      </div>
+      <div class="form-group row">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email..."
+          name="email"
+          required
+        />
+      </div>
+      <div class="form-group row">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password..."
+          name="password"
+          required
+        />
+      </div>
+      <div class="form-group row">
+        <label for="type">User Type</label>
+        <select class="form-control" name="type" id="type" required>
+            <%
+              for ( var i = 0; i < userTypes.length; i++ )
+              {
+                %><option value ="<%=userTypes[i]._id %>"><%= userTypes[i].type %></option>
+              <% } %>
+          </select>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Register</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <h1>Users List</h1>
+    <% if(users.length>0) { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">User Type</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i<users.length;i++) { %>
+            <tr>
+              <td> <%=i%> </td>
+              <td> <%=users[i].email%></a></td>
+              <td> <%=users[i].name%></a></td>
+              <td> <%=users[i].type.type%></a></td>
+              <td><a href="/users/show/<%= users[i]._id%> "> View Details </td>
+              <td><a href="/users/edit/<%= users[i]._id%> "> Edit </a></td>
+              <td><a href="/users/delete/<%= users[i]._id%> "> Delete </a></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div>No users found.</div>
+    <% } %>
+  </div>
