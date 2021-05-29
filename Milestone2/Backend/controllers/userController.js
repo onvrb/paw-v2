@@ -7,7 +7,7 @@ var userController = {};
 // vai buscar todas as accounts
 userController.showAll = async function (req, res) {
   try {
-    var users = await User.find().populate('type'); //popular o campo type com informação
+    var users = await User.find().populate("type"); //popular o campo type com informação
     res.jsonp({ users: users });
   } catch (error) {
     res.render({ message: "Error finding users", error: error });
@@ -18,14 +18,13 @@ userController.showAll = async function (req, res) {
 userController.show = async function (req, res) {
   let id = req.params.id;
   try {
-    var user = await User.findOne({ _id: id }).populate('type'); //popular o campo type com informação
+    var user = await User.findOne({ _id: id }).populate("type"); //popular o campo type com informação
     console.log(user);
     res.jsonp({ user: user });
   } catch (error) {
     res.jsonp({ message: "Error finding user", error: error });
   }
 };
-
 
 userController.formCreate = async function (req, res) {
   try {
@@ -47,7 +46,7 @@ userController.create = async function (req, res) {
       var body = req.body;
       body.covid = false;
       body.banned = false;
-      console.log(body)
+      console.log(body);
       user = await new User(req.body).save();
       res.jsonp(user);
     }
@@ -65,7 +64,7 @@ userController.formEdit = async function (req, res) {
       res.jsonp({ user: user });
     }
   } catch (error) {
-    res.jsonp({message: "Error retrieving user edit form", error: error});
+    res.jsonp({ message: "Error retrieving user edit form", error: error });
   }
 };
 
@@ -74,9 +73,9 @@ userController.edit = async function (req, res) {
   let body = req.body;
   let id = req.params.id;
   try {
-      console.log(body)
-    body.covid ? body.covid = true : body.covid = false;
-    body.banned ? body.banned = true : body.banned = false;
+    console.log(body);
+    body.covid ? (body.covid = true) : (body.covid = false);
+    body.banned ? (body.banned = true) : (body.banned = false);
     await User.findOneAndUpdate({ _id: id }, body);
     res.jsonp(id);
   } catch (error) {
@@ -93,6 +92,34 @@ userController.delete = async function (req, res) {
   } catch (error) {
     res.jsonp({ message: "Error deleting user", error: error });
   }
+};
+
+userController.verifyToken = function (req, res, next) {
+  vartoken = req.headers["x-access-token"];
+  if (!token)
+    returnres.status(403).send({ auth: false, message: "No token provided." });
+  jwt.verify(token, config.secret, function (err, decoded) {
+    if (err)
+      returnres
+        .status(500)
+        .send({ auth: false, message: "Failed to authenticate token." });
+    req.userId = decoded.id;
+    next();
+  });
+};
+
+userController.verifyRoleAdmin = function (req, res, next) {
+  User.findById(req.userId, function (err, user) {
+    if (err) 
+    return res.status(500).send("There was a problem finding the user.");
+    if (!user) 
+    return res.status(404).send("No user found.");
+    if (user.role === "admin") {
+      next();
+    } else {
+      return res.status(403).send({ auth: false, message: "Not authorized!" });
+    }
+  });
 };
 
 module.exports = userController;
