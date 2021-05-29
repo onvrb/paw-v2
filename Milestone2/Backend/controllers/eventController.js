@@ -10,9 +10,9 @@ const eventController = {};
 eventController.showAll = async function(req, res){
     try {
         var events = await Event.find().populate('location'); //popular o campo location com informação
-        res.render('events/listAll', {events: events});
+        res.jsonp({events: events});
     } catch (error){
-        res.render("error", { message: "Error finding events", error: error });
+        res.jsonp({ message: "Error finding events", error: error });
     }
 }
 
@@ -22,9 +22,9 @@ eventController.show = async function (req, res){
     try{
         var event = await (Event.findOne({_id: id})).populate('location').populate('promoters'); //popular o campo location com informação
         console.log(event);
-        res.render('events/viewDetails', {event: event});
+        res.jsonp({event: event});
     }catch (error) {
-        res.render("error", { message: "Error finding event", error: error })
+        res.jsonp({ message: "Error finding event", error: error })
     }
 }
 
@@ -33,7 +33,7 @@ eventController.formCreate = async function(req,res){
     var typePromoter = await UserType.findOne({type: 'Promoter'});
     var promoters = await User.find({type: typePromoter._id});
     var locations = await Location.find();
-    res.render('events/createForm', { locations: locations, promoters: promoters });
+    res.jsonp({ locations: locations, promoters: promoters });
 }
 
 // cria 1 event como resposta a um post de um form
@@ -74,9 +74,9 @@ eventController.formEdit = async function (req, res) {
         var typePromoter = await UserType.findOne({type: 'Promoter'});
         var promoters = await User.find({type: typePromoter._id});
         var locations = await Location.find();
-        res.render("events/editDetails", { event: event, locations: locations, promoters: promoters });
+        res.jsonp({ event: event, locations: locations, promoters: promoters });
     } catch (error) {
-        res.render("./error", { message: "Error finding event", error: error });
+        res.jsonp({ message: "Error finding event", error: error });
     }
 };
 
@@ -89,9 +89,9 @@ eventController.edit = async function (req, res) {
     }
     try {
         await Event.findOneAndUpdate({ _id: id }, body);
-        res.redirect("/events/show/" + id);
+        res.jsonp(id);
     } catch (error) {
-        res.render("./error", { message: "Error editing event", error: error });
+        res.jsonp({ message: "Error editing event", error: error });
     }
 };
 
@@ -103,7 +103,7 @@ eventController.delete = function(req, res){
             console.log('Erro a ler');
             
         } else {
-            res.redirect('/events')
+            res.jsonp()
         }
     })
 }

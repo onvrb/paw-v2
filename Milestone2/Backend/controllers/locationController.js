@@ -8,9 +8,9 @@ var locationController = {};
 locationController.showAll = async function (req, res) {
   try {
     var locations = await Location.find();
-    res.render("locations/listAll", { locations: locations });
+    res.jsonp({ locations: locations });
   } catch (error) {
-    res.render("error", { message: "Error showing all locations", error: error,});
+    res.jsonp({ message: "Error showing all locations", error: error,});
   }
 };
 
@@ -19,15 +19,10 @@ locationController.show = async function (req, res) {
   let id = req.params.id;
   try {
     var location = await Location.findOne({ _id: id });
-    res.render("locations/viewDetails", { location: location });
+    res.jsonp({ location: location });
   } catch (error) {
-    res.render("error", { message: "Error finding location", error: error });
+    res.jsonp({ message: "Error finding location", error: error });
   }
-};
-
-//Location creating form
-locationController.formCreate = async function (req, res) {
-  res.render("locations/createForm");
 };
 
 //Location post
@@ -35,9 +30,9 @@ locationController.create = async function (req, res) {
   let body = req.body;
   try {
     var location = await Location.create(body);
-    res.redirect("/locations");
+    res.jsonp(location);
   } catch (error) {
-    res.render("./error", { message: "Error creating location", error: error });
+    res.jsonp({ message: "Error creating location", error: error });
   }
 };
 
@@ -46,9 +41,9 @@ locationController.formEdit = async function (req, res) {
   let id = req.params.id;
   try {
     var location = await Location.findOne({ _id: id });
-    res.render("locations/editDetails", { location: location });
+    res.jsonp({ location: location });
   } catch (error) {
-    res.render("./error", { message: "Error finding location", error: error });
+    res.jsonp({ message: "Error finding location", error: error });
   }
 };
 
@@ -58,9 +53,9 @@ locationController.edit = async function (req, res) {
   let id = req.params.id;
   try {
     await Location.findOneAndUpdate({ _id: id }, body);
-    res.redirect("/locations/show/" + id);
+    res.jsonp(id);
   } catch (error) {
-    res.render("./error", { message: "Error editing location", error: error });
+    res.jsonp({ message: "Error editing location", error: error });
   }
 };
 
@@ -70,13 +65,13 @@ locationController.delete = async function (req, res) {
   try {
     var events = await Event.find({location: id});
     if (events.length) {
-      res.render("./error", { message: "Error deleting location. There are events at this location", error: {} });
+      res.jsonp({ message: "Error deleting location. There are events at this location", error: {} });
     }else {
-      await Location.deleteOne({ _id: id });
-      res.redirect("/locations");
+      var location = await Location.deleteOne({ _id: id });
+      res.jsonp(location);
     }    
   } catch (error) {
-    res.render("./error", { message: "Error deleting location", error: error });
+    res.jsonp({ message: "Error deleting location", error: error });
   }
 };
 

@@ -8,9 +8,9 @@ var userController = {};
 userController.showAll = async function (req, res) {
   try {
     var users = await User.find().populate('type'); //popular o campo type com informação
-    res.render("users/listAll", { users: users });
+    res.jsonp({ users: users });
   } catch (error) {
-    res.render("error", { message: "Error finding users", error: error });
+    res.render({ message: "Error finding users", error: error });
   }
 };
 
@@ -20,9 +20,9 @@ userController.show = async function (req, res) {
   try {
     var user = await User.findOne({ _id: id }).populate('type'); //popular o campo type com informação
     console.log(user);
-    res.render("users/viewDetails", { user: user });
+    res.jsonp({ user: user });
   } catch (error) {
-    res.render("error", { message: "Error finding user", error: error });
+    res.jsonp({ message: "Error finding user", error: error });
   }
 };
 
@@ -30,9 +30,9 @@ userController.show = async function (req, res) {
 userController.formCreate = async function (req, res) {
   try {
     var userTypes = await UserType.find();
-    res.render("users/createForm", { userTypes: userTypes });
+    res.jsonp({ userTypes: userTypes });
   } catch (error) {
-    res.render("error", { message: "Error finding user types", error: error });
+    res.jsonp({ message: "Error finding user types", error: error });
   }
 };
 
@@ -42,17 +42,17 @@ userController.create = async function (req, res) {
     var email = req.body.email;
     user = await User.findOne({ email: email });
     if (user) {
-      res.render("error", { message: "Email already exists", error: {} });
+      res.jsonp({ message: "Email already exists", error: {} });
     } else {
       var body = req.body;
       body.covid = false;
       body.banned = false;
       console.log(body)
       user = await new User(req.body).save();
-      res.redirect("/users");
+      res.jsonp(user);
     }
   } catch (error) {
-    res.render("error", { message: "Error registering user", error: error });
+    res.jsonp({ message: "Error registering user", error: error });
   }
 };
 
@@ -62,13 +62,10 @@ userController.formEdit = async function (req, res) {
     var id = req.params.id;
     var user = await User.findOne({ _id: id });
     if (user) {
-      res.render("users/editDetails", { user: user });
+      res.jsonp({ user: user });
     }
   } catch (error) {
-    res.render("error", {
-      message: "Error retrieving user edit form",
-      error: error,
-    });
+    res.jsonp({message: "Error retrieving user edit form", error: error});
   }
 };
 
@@ -81,9 +78,9 @@ userController.edit = async function (req, res) {
     body.covid ? body.covid = true : body.covid = false;
     body.banned ? body.banned = true : body.banned = false;
     await User.findOneAndUpdate({ _id: id }, body);
-    res.redirect("/users/show/" + id);
+    res.jsonp(id);
   } catch (error) {
-    res.render("./error", { message: "Error editing user", error: error });
+    res.jsonp({ message: "Error editing user", error: error });
   }
 };
 
@@ -92,9 +89,9 @@ userController.delete = async function (req, res) {
   let id = req.params.id;
   try {
     var user = await User.deleteOne({ _id: id });
-    res.redirect("/users");
+    res.jsonp(user);
   } catch (error) {
-    res.render("./error", { message: "Error deleting user", error: error });
+    res.jsonp({ message: "Error deleting user", error: error });
   }
 };
 
