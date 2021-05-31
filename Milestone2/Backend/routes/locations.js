@@ -1,14 +1,14 @@
 var express = require("express");
 var router = express.Router();
 var locationController = require("../controllers/locationController");
+var userController = require("../controllers/userController");
 
 //ShowAll
 // mostra todos locations
-router.get("/", locationController.showAll);
-router.get("/show/:id", locationController.show);
-router.post("/create", locationController.create);
-router.get("/edit/:id", locationController.formEdit);
-router.post("/edit/:id", locationController.edit);
-router.get("/delete/:id", locationController.delete);
+router.get("/", userController.verifyToken, locationController.showAll);
+router.get("/:id", userController.verifyToken, locationController.show);
+router.post("/", userController.verifyToken, locationController.create);
+router.put("/:id", userController.verifyToken, locationController.edit);
+router.delete("/:id", userController.verifyToken, locationController.delete);
 
 module.exports = router;
