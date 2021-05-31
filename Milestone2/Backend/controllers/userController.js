@@ -75,7 +75,7 @@ userController.edit = async function (req, res) {
     var user = await User.findOneAndUpdate({ _id: id }, body);
     if (!user)
       res.status(404).jsonp({});
-    res.status(200).jsonp(user);
+    res.status(200).jsonp({ user: user });
   } catch (error) {
     res.jsonp({ message: "Error editing user", error: error });
   }
@@ -85,7 +85,7 @@ userController.delete = async function (req, res) {
   try {
     let id = req.params.id;
     var user = await User.deleteOne({ _id: id });
-    res.status(200).jsonp(user);
+    res.status(200).jsonp({ user: user });
   } catch (error) {
     res.status(500).jsonp({ message: "Error deleting user", error: error });
   }
