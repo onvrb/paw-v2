@@ -7,7 +7,6 @@ var UserType = require("../models/userType");
 
 var userController = {};
 
-// vai buscar todas as accounts
 userController.showAll = async function (req, res) {
   try {
     var users = await User.find().populate("type"); //popular o campo type com informação
@@ -17,7 +16,6 @@ userController.showAll = async function (req, res) {
   }
 }
 
-// vai buscar account por id
 userController.show = async function (req, res) {
   try {
     let id = req.params.id;
@@ -71,7 +69,6 @@ userController.logout = function (req, res) {
   }
 }
 
-// edita 1 account como resposta a um post de um form editar
 userController.edit = async function (req, res) {
   try {
     var id = req.params.id;
@@ -84,7 +81,6 @@ userController.edit = async function (req, res) {
   }
 };
 
-// apaga uma conta por id
 userController.delete = async function (req, res) {
   try {
     let id = req.params.id;
