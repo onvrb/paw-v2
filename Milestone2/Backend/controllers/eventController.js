@@ -50,11 +50,6 @@ eventController.create = function (req, res) {
             console.log('Erro a gravar');
             if (err.code === 11000) { // duplicate key error collection
                 console.log('entou 1');
-                res.render('error', {
-                    message: "Já existe um evento com esse nome.",
-                    // });      // verbosed error / debug
-                    error: err
-                });  // verbosed error / debug
             }
             else {
                 console.log('entou 2');

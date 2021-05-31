@@ -1,4 +1,7 @@
-var mongoose = require("mongoose");
+var jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt');
+var config = require('../authconfig');
+
 var User = require("../models/user");
 var UserType = require("../models/userType");
 
@@ -8,76 +11,74 @@ var userController = {};
 userController.showAll = async function (req, res) {
   try {
     var users = await User.find().populate("type"); //popular o campo type com informação
-    res.jsonp({ users: users });
+    res.status(200).jsonp({ users: users });
   } catch (error) {
-    res.render({ message: "Error finding users", error: error });
+    res.status(500).render({ message: "Error finding users", error: error });
   }
-};
+}
 
 // vai buscar account por id
 userController.show = async function (req, res) {
-  let id = req.params.id;
   try {
+    let id = req.params.id;
     var user = await User.findOne({ _id: id }).populate("type"); //popular o campo type com informação
-    console.log(user);
-    res.jsonp({ user: user });
+    res.status(200).jsonp({ user: user });
   } catch (error) {
-    res.jsonp({ message: "Error finding user", error: error });
+    res.status(500).jsonp({ message: "Error finding user", error: error });
   }
-};
+}
 
-userController.formCreate = async function (req, res) {
+userController.register = async function (req, res) {
   try {
-    var userTypes = await UserType.find();
-    res.jsonp({ userTypes: userTypes });
-  } catch (error) {
-    res.jsonp({ message: "Error finding user types", error: error });
-  }
-};
+    var hashedPass = bcrypt.hashSync(req.body.password, 8);
+    req.body.password = hashedPass;
+    var user = await new User(req.body).save();
 
-userController.create = async function (req, res) {
-  try {
-    var user;
-    var email = req.body.email;
-    user = await User.findOne({ email: email });
-    if (user) {
-      res.jsonp({ message: "Email already exists", error: {} });
-    } else {
-      var body = req.body;
-      body.covid = false;
-      body.banned = false;
-      console.log(body);
-      user = await new User(req.body).save();
-      res.jsonp(user);
+    if (user != null) {
+      var token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
+      res.status(200).jsonp({ user: user, token: token });
     }
   } catch (error) {
     res.jsonp({ message: "Error registering user", error: error });
   }
-};
+}
 
-// mostra 1 account para edicao
-userController.formEdit = async function (req, res) {
+userController.login = async function (req, res) {
   try {
-    var id = req.params.id;
-    var user = await User.findOne({ _id: id });
-    if (user) {
-      res.jsonp({ user: user });
-    }
-  } catch (error) {
-    res.jsonp({ message: "Error retrieving user edit form", error: error });
+    var user = await User.findOne({ email: req.body.email });
+
+    if (!user)
+      res(404).jsonp({});
+
+    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordIsValid)
+      res.status(401).send({ auth: false, token: null });
+
+    var token = jwt.sign({ id: user._id }, config.secret, {
+      expiresIn: 86400
+    });
+    res.status(200).send({ auth: true, token: token });
+  } catch (err) {
+    res.status(500).jsonp({ message: "Error logging in user.", error: err })
   }
-};
+}
+
+userController.logout = function (req, res) {
+  try {
+    res.status(200).send({ auth: false, token: null });
+  } catch (error) {
+    res.jsonp({ message: "Error logout user", error: error });
+  }
+}
 
 // edita 1 account como resposta a um post de um form editar
 userController.edit = async function (req, res) {
-  let body = req.body;
-  let id = req.params.id;
   try {
-    console.log(body);
-    body.covid ? (body.covid = true) : (body.covid = false);
-    body.banned ? (body.banned = true) : (body.banned = false);
-    await User.findOneAndUpdate({ _id: id }, body);
-    res.jsonp(id);
+    var id = req.params.id;
+    var user = await User.findOneAndUpdate({ _id: id }, body);
+    if (!user)
+      res.status(404).jsonp({});
+    res.status(200).jsonp(user);
   } catch (error) {
     res.jsonp({ message: "Error editing user", error: error });
   }
@@ -85,40 +86,51 @@ userController.edit = async function (req, res) {
 
 // apaga uma conta por id
 userController.delete = async function (req, res) {
-  let id = req.params.id;
   try {
+    let id = req.params.id;
     var user = await User.deleteOne({ _id: id });
-    res.jsonp(user);
+    res.status(200).jsonp(user);
   } catch (error) {
-    res.jsonp({ message: "Error deleting user", error: error });
+    res.status(500).jsonp({ message: "Error deleting user", error: error });
   }
 };
 
+/**
+ * AUTHENTICATION
+ */
+
 userController.verifyToken = function (req, res, next) {
-  vartoken = req.headers["x-access-token"];
+  console.log('ye')
+  var token = req.headers["x-access-token"];
+
   if (!token)
-    returnres.status(403).send({ auth: false, message: "No token provided." });
+    return res.status(403).send({ auth: false, message: "No token provided." });
+
   jwt.verify(token, config.secret, function (err, decoded) {
     if (err)
-      returnres
+      return res
         .status(500)
         .send({ auth: false, message: "Failed to authenticate token." });
+
     req.userId = decoded.id;
+
     next();
   });
 };
 
 userController.verifyRoleAdmin = function (req, res, next) {
   User.findById(req.userId, function (err, user) {
-    if (err) 
-    return res.status(500).send("There was a problem finding the user.");
-    if (!user) 
-    return res.status(404).send("No user found.");
-    if (user.role === "admin") {
+    console.log(user);
+    if (err)
+      return res.status(500).jsonp({ message: "There was a problem finding the user.", error: err });
+
+    if (!user)
+      return res.status(404).jsonp({ message: "No user found." });
+
+    if (user.UserType.type == "Admin")
       next();
-    } else {
-      return res.status(403).send({ auth: false, message: "Not authorized!" });
-    }
+    else
+      return res.status(403).jsonp({ auth: false, message: "Not authorized!" });
   });
 };
 

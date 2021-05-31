@@ -10,19 +10,19 @@ router.get("/:id", (req, res) => {
   ticketController
     .show(id)
     .then((data) => {
-      res.render("locations/viewDetails", { location: data });
+      //res.render("locations/viewDetails", { location: data });
     })
     .catch((error) => {
-      res.render("error", { error: error, message: "Não encontrei mano" });
+      //res.render("error", { error: error, message: "Não encontrei mano" });
     });
 });
 
 router.get("/user/:id", (req, res) => {
-  res.render("locations/createForm");
+  //res.render("locations/createForm");
 });
 
 router.get("/create/form", (req, res) => {
-  res.render("locations/createForm");
+  //res.render("locations/createForm");
 });
 
 router.post("/create", (req, res) => {
@@ -43,7 +43,7 @@ router.get("/edit/:id", (req, res) => {
   locationController
     .show(id)
     .then((data) => {
-      res.render("locations/editDetails", { location: data });
+      //res.render("locations/editDetails", { location: data });
     })
     .catch((error) => {
       res.redirect("/error");
