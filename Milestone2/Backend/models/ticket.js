@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 var Event = require('./event').schema;
 var User = require('./user').schema
 

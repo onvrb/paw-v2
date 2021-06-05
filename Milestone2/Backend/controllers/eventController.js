@@ -24,7 +24,7 @@ eventController.show = async function (req, res) {
     }
 }
 
-eventController.create = function (req, res) {
+eventController.create = async function (req, res) {
     try {
         var event = await Event.create(req.body);
         res.status(200).jsonp({ event: event });
@@ -42,7 +42,7 @@ eventController.edit = async function (req, res) {
     }
 };
 
-eventController.delete = function (req, res) {
+eventController.delete = async function (req, res) {
     try {
         var event = await Event.deleteOne({ _id: req.params.id });
         res.status(200).jsonp({ event: event });
