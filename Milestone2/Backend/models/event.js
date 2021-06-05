@@ -2,16 +2,14 @@ var mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 var EventSchema = new mongoose.Schema({
-  name: { type: String, unique: true },
-  description: String,
-  date: String, // tem de ser string, caso seja Date ao editar vem vazio
-  time: String,
-  location: { type: Schema.Types.ObjectId, ref: "Location" }, //para importar a referencia de location
-  promoters: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  poster: String,
-  nTicketsAvailable: Number,
-  nTicketsPurchased: Number,
-  price: Number,
+  name: { type: String, unique: true, required: true },
+  description: { type: String, required: true },
+  date: { type: String, required: true },
+  time: { type: String, required: true },
+  location: { type: Schema.Types.ObjectId, ref: "Location", required: true },
+  promoters: [{ type: Schema.Types.ObjectId, ref: "User", required: true }],
+  poster: { type: String, required: true },
+  price: { type: Number, required: true },
 });
 
 module.exports = mongoose.model("Event", EventSchema);
