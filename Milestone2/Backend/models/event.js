@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+var Ticket = require('../models/ticket');
 
 var EventSchema = new mongoose.Schema({
   name: { type: String, unique: true, required: true },
@@ -11,5 +12,17 @@ var EventSchema = new mongoose.Schema({
   poster: { type: String, required: true },
   price: { type: Number, required: true },
 });
+
+//cant delete if event has tickets sold
+EventSchema.pre('deleteOne', () => {
+  let tickets = await Ticket.find({ event: this.name });
+  if (tickets) {
+    var err = new Error('Event has sold tickets.');
+    next(err);
+  }
+  else {
+    next();
+  }
+})
 
 module.exports = mongoose.model("Event", EventSchema);
