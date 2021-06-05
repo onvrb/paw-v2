@@ -1,35 +1,51 @@
-// not finished
-// o que seria melhor: separar controller em serviços? 
-
-var mongoose = require("mongoose");
 var Ticket = require("../models/ticket");
 
 var ticketController = {};
 
-// vai buscar todos os bilhetes
-ticketController.showAll = function () {
-  return Location.find();
+ticketController.showAll = async function (req, res) {
+  try {
+    var tickets = await Ticket.find();
+    res.status(200).jsonp({ ticket: tickets });
+  } catch (error) {
+    res.status(500).jsonp({ message: "Error getting tickets", error: error });
+  }
+  return
 };
 
-// vai buscar bilhete por id
-ticketController.show = function (id) {
-  return Location.findOne({ _id: id });
+ticketController.show = async function (req, res) {
+  try {
+    var ticket = await Ticket.findOne({ _id: req.params.id });
+    res.status(200).jsonp({ ticket: ticket });
+  } catch (error) {
+    res.status(500).jsonp({ message: "Error getting ticket", error: error });
+  }
 };
 
-// cria bilhete
-ticketController.create = function (body) {
-  return Location.create(body);
+ticketController.create = async function (req, res) {
+  try {
+    var ticket = await Ticket.create(req.body);
+    res.status(200).jsonp({ ticket: ticket });
+  } catch (error) {
+    res.status(500).jsonp({ message: "Error creating ticket", error: error });
+  }
 };
 
-// mostra 1 bilhete para edicao
-ticketController.edit = function (id, body) {
-  return Location.findOneAndUpdate({ _id: id }, body);
+ticketController.edit = async function (req, res) {
+  try {
+    var ticket = await Ticket.findOneAndUpdate({ _id: req.params.id }, req.body);
+    res.status(200).jsonp({ ticket: ticket });
+  } catch (error) {
+    res.status(500).jsonp({ message: "Error editing ticket", error: error });
+  }
 };
 
-
-// apaga um bilhete por id
-ticketController.delete = function (id) {
-  return Location.deleteOne({ _id: id });
+ticketController.delete = async function (req, res) {
+  try {
+    var ticket = await Ticket.deleteOne({ _id: req.params.id });
+    res.status(200).jsonp({ ticket: ticket });
+  } catch (error) {
+    res.status(500).jsonp({ message: "Error deleting ticket", error: error });
+  }
 };
 
 module.exports = ticketController;

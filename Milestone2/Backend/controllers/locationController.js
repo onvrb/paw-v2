@@ -1,4 +1,3 @@
-var mongoose = require("mongoose");
 var Location = require("../models/location");
 
 var locationController = {};
@@ -43,7 +42,7 @@ locationController.edit = async function (req, res) {
 locationController.delete = async function (req, res) {
   try {
     var location = await Location.deleteOne({ _id: id });
-    res.status(200).jsonp(location);
+    res.status(200).jsonp({ location: location });
   } catch (error) {
     res.status(500).jsonp({ message: "Error deleting location", error: error });
   }

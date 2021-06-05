@@ -9,4 +9,4 @@ var TicketSchema = new mongoose.Schema({
     cancelled: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('Event', EventSchema);
+module.exports = mongoose.model('Ticket', TicketSchema);
