@@ -103,7 +103,6 @@ userController.delete = async function (req, res) {
  */
 
 userController.verifyToken = function (req, res, next) {
-  console.log('ye')
   var token = req.headers["x-access-token"];
 
   if (!token)

@@ -9,6 +9,12 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { EventsComponent } from './events/events.component';
+import { LocationsComponent } from './locations/locations.component';
+import { PromotersComponent } from './promoters/promoters.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +22,13 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    EventsComponent,
+    LocationsComponent,
+    PromotersComponent,
+    DashboardComponent,
+    TicketsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
