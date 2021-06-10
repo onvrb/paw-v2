@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   login(): void {
-    this.http.post('http://localhost:3000/users/login', this.form.getRawValue())
+    this.http.post('http://localhost:4200/api/users/login', this.form.getRawValue())
       .subscribe(
         res => {
           this.router.navigate(['home']);
