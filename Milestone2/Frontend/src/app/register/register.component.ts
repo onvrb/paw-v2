@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   submit(): void {
-    this.http.post('http://localhost:3000/users/login', this.form.getRawValue(), { withCredentials: true })
+    this.http.post('http://localhost:3000/users/register', this.form.getRawValue(), { withCredentials: true })
       .subscribe(res => {
         this.router.navigate(['home']);
       })
