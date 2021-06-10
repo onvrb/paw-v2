@@ -30,6 +30,8 @@ userController.register = async function (req, res) {
   try {
     var hashedPass = bcrypt.hashSync(req.body.password, 8);
     req.body.password = hashedPass;
+    var type = await UserType.findOne({ type: req.body.type });
+    req.body.type = type;
     var user = await new User(req.body).save();
 
     if (user != null) {
@@ -50,14 +52,14 @@ userController.login = async function (req, res) {
 
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
     if (!passwordIsValid)
-      res.status(401).send({ auth: false, token: null });
+      return res.status(401).send({ auth: false, token: null });
 
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400
     });
-    res.status(200).send({ auth: true, token: token });
+    return res.status(200).send({ auth: true, token: token });
   } catch (err) {
-    res.status(500).jsonp({ message: "Error logging in user.", error: err })
+    return res.status(500).jsonp({ message: "Error logging in user.", error: err })
   }
 }
 
@@ -72,6 +74,11 @@ userController.logout = function (req, res) {
 userController.edit = async function (req, res) {
   try {
     var id = req.params.id;
+    var types;
+    if (req.body.type) {
+      type = await UserType.findOne({ type: req.body.type });
+      req.body.type = type;
+    }
     var user = await User.findOneAndUpdate({ _id: id }, body);
     if (!user)
       res.status(404).jsonp({});

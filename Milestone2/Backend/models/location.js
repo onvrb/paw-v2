@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 var Event = require('../models/event');
 
 var LocationSchema = new mongoose.Schema({
@@ -9,7 +8,7 @@ var LocationSchema = new mongoose.Schema({
     limit: { type: Number, required: true },
 });
 
-LocationSchema.pre('deleteOne', async () => {
+LocationSchema.pre('deleteOne', async (next) => {
     let events = await Event.find({ location: this.name });
     if (events) {
         var err = new Error('Location has events.');
