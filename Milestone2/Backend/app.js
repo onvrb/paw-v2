@@ -6,6 +6,7 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var cors = require('cors');
 const app = express();
+const config = require('./config');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -21,7 +22,7 @@ mongoose.set("useFindAndModify", false);
 
 mongoose
   .connect(
-    "mongodb+srv://paw:Wf6U8cKipS7aa2EV@cluster0.lxdxs.mongodb.net/paw?ssl=true",
+    `${config.dbConnection}`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(async () => {
