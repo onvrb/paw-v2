@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  name: string;
+  email: string;
+  password: string;
+  constructor() { 
+    let user = JSON.parse(localStorage.getItem('currentUser') || 'N/A')['user'];
+    this.name = user.name;
+    this.email = user.email;
+    this.password = user.password;
+}
 
   ngOnInit(): void {
   }
