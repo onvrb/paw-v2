@@ -46,18 +46,18 @@ userController.register = async function (req, res) {
 userController.login = async function (req, res) {
   try {
     var user = await User.findOne({ email: req.body.email });
-        
+
     if (user == null)
       res(404).jsonp({});
-    
+
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
     if (!passwordIsValid)
       return res.status(401).send({ auth: false, token: null });
-    
+
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400
     });
-    return res.status(200).send({ auth: true, token: token });
+    return res.status(200).send({ auth: true, token: token, user: user });
   } catch (err) {
     return res.status(500).jsonp({ message: "Error logging in user.", error: err })
   }
