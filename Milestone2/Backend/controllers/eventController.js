@@ -8,7 +8,8 @@ const eventController = {};
 
 eventController.showAll = async function (req, res) {
     try {
-        var events = await Event.find().populate('location'); //popular o campo location com informação
+        var query = req.query;
+        var events = await Event.find(query).populate('location'); //popular o campo location com informação
         res.status(200).jsonp({ events: events });
     } catch (error) {
         res.status(500).jsonp({ message: "Error finding events", error: error });

@@ -1,4 +1,7 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { EventsService } from '../services/events.service';
 
 @Component({
   selector: 'app-events',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
-  constructor() { }
+  query: string = '';
+  events: any;
+
+  constructor(private eventService: EventsService, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params: any) => {
+      this.query = params;
+    })
+
+    this.eventService.getEvents(this.query).subscribe((res: any) => {
+      this.events = res.events;
+    })
   }
 
 }

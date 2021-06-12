@@ -6,11 +6,13 @@ import { HomeComponent } from './home/home.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LocationsComponent } from './locations/locations.component';
 import { LoginComponent } from './login/login.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { TicketsComponent } from './tickets/tickets.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
   { path: 'homepage', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -18,7 +20,8 @@ const routes: Routes = [
   { path: 'locations', component: LocationsComponent },
   { path: 'events', component: EventsComponent },
   { path: 'tickets', component: TicketsComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: '**', component: PagenotfoundComponent }
 ];
 
 @NgModule({

@@ -13,7 +13,6 @@ export class HomepageComponent implements OnInit {
     this.today = new Date().toDateString();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

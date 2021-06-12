@@ -17,6 +17,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { ProfileComponent } from './profile/profile.component';
 import { JwtInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { HomepageComponent } from './homepage/homepage.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     DashboardComponent,
     TicketsComponent,
     ProfileComponent,
-    HomepageComponent
+    HomepageComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
