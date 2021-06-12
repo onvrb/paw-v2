@@ -7,11 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  today: string;
+  today: string = new Date().toDateString();
+  today_date: string = new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDay();
 
-  constructor() {
-    this.today = new Date().toDateString();
-  }
+  constructor() { }
 
   ngOnInit(): void { }
 

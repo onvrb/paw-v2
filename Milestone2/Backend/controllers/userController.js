@@ -103,9 +103,9 @@ userController.delete = async function (req, res) {
  */
 
 userController.verifyToken = function (req, res, next) {
-  var token = req.headers["x-access-token"];
+  var token = req.headers["token"];
 
-  if (!token)
+  if (token == null)
     return res.status(403).send({ auth: false, message: "No token provided." });
 
   jwt.verify(token, config.secret, function (err, decoded) {

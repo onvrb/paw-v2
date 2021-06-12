@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-locations',
@@ -9,12 +10,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LocationsComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  locations: any;
+
+  constructor(private http: HttpClient, private router: Router, private authentication: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:4200/api/locations', { withCredentials: true })
-      .subscribe(res => {
-        this.router.navigate(['locations']);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': localStorage.getItem('token')?.toString() || ''
+    })
+    console.log(headers);
+
+    this.http.get('http://localhost:4200/api/locations', { headers: headers })
+      .subscribe((res: any) => {
+        this.locations = res.locations;
       })
   }
 
