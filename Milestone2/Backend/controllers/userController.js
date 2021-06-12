@@ -103,8 +103,8 @@ userController.delete = async function (req, res) {
  */
 
 userController.verifyToken = function (req, res, next) {
-  var token = req.headers["token"];
-
+  var token = req.headers['authorization'];
+console.log(token)
   if (token == null)
     return res.status(403).send({ auth: false, message: "No token provided." });
 

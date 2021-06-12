@@ -15,13 +15,7 @@ export class LocationsComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private authentication: AuthenticationService) { }
 
   ngOnInit(): void {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'token': localStorage.getItem('token')?.toString() || ''
-    })
-    console.log(headers);
-
-    this.http.get('http://localhost:4200/api/locations', { headers: headers })
+    this.http.get('http://localhost:4200/api/locations')
       .subscribe((res: any) => {
         this.locations = res.locations;
       })
