@@ -10,7 +10,7 @@ export class ProfileComponent implements OnInit {
   email: string;
   password: string;
   constructor() { 
-    let user = JSON.parse(localStorage.getItem('currentUser') || 'N/A')['user'];
+    let user = JSON.parse(localStorage.getItem('currentUser') || 'N/A');
     this.name = user.name;
     this.email = user.email;
     this.password = user.password;

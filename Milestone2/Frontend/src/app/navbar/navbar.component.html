@@ -18,6 +18,7 @@
                 </li>
             </div>
 
+
             <!--Logged-->
             <div class="nav navbar-nav" *ngIf="this.authentication.userLogged()">
                 <li class="nav-item">
@@ -28,17 +29,24 @@
                     <a class="nav-link" routerLink="/profile">Profile</a>
                 </li>
 
+                <!--user-->
+                <!--promotor-->
+                <!--admin-->
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/events">Events</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/locations">Locations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/users">Users</a>
                 </li>
 
                 <li class="nav-item ">
                     <a class="nav-link" routerLink="#" (click)="logout()">Logout</a>
                 </li>
 
-                <!--user-->
-                <!--promotor-->
-                <!--admin-->
+
             </div>
 
         </ul>
