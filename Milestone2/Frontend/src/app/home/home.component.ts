@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   name: string;
 
   constructor() {
-    let user = JSON.parse(localStorage.getItem('currentUser') || 'N/A')['user'];
+    let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this.name = user.name;
   }
 

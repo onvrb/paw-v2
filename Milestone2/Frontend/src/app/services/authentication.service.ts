@@ -24,7 +24,8 @@ export class AuthenticationService {
   }
 
   getUser(): Observable<any> {
-    return JSON.parse(localStorage.getItem('currentUser') || '{}')['user'];
+    console.log(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+    return JSON.parse(localStorage.getItem('currentUser') || '{}');
   }
 
   userLogged(): Boolean {
