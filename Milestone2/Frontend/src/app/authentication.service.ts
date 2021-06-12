@@ -20,5 +20,13 @@ export class AuthenticationService {
   register(name: string, email: string, password: string): Observable<any> {
     return this.http.post<any>('http://localhost:4200/api/users/register', { name: name, email: email, password: password });
   }
+
+  getUser(): Observable<any> {
+    return JSON.parse(localStorage.getItem('currentUser') || '{}')['user'];
+  }
+
+  userLogged(): Boolean {
+    return (localStorage.getItem('currentUser') != null);
+  }
 }
 

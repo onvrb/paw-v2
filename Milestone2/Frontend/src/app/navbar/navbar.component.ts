@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 
@@ -9,7 +9,11 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authentication: AuthenticationService, private router: Router) { }
+  user: Object;
+
+  constructor(public authentication: AuthenticationService, private router: Router) {
+    this.user = authentication.getUser();
+  }
 
   ngOnInit(): void { }
 

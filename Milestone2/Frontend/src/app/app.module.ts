@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { ProfileComponent } from './profile/profile.component';
 import { JwtInterceptor } from './interceptors/auth-interceptor.interceptor';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { JwtInterceptor } from './interceptors/auth-interceptor.interceptor';
     PromotersComponent,
     DashboardComponent,
     TicketsComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
