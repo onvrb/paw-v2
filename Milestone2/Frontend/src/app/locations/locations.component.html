@@ -8,11 +8,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+
+      <tr *ngFor="let location of locations">
+        <td>{{ location.name }}</td>
+        <td>{{ location.address }}</td>
+        <td>{{ location.capacity }}</td>
+        <td>{{ location.limit }}</td>
       </tr>
+      <ng-container *ngIf="!locations.length">
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="6">N{{locations.length}} Locations Found</td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>

@@ -9,7 +9,6 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./locations.component.css']
 })
 export class LocationsComponent implements OnInit {
-
   locations: any;
 
   constructor(private http: HttpClient, private router: Router, private authentication: AuthenticationService) { }
@@ -20,5 +19,4 @@ export class LocationsComponent implements OnInit {
         this.locations = res.locations;
       })
   }
-
 }
