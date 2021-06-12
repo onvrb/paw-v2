@@ -1,3 +1,5 @@
-<p>
-{{events}}
-</p>
+<div class="container">
+    <div class="row">
+            <app-event-card *ngFor='let event of events; index as i' [event]="event"></app-event-card>
+    </div>
+</div>

@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { JwtInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { EventCardComponent } from './event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     TicketsComponent,
     ProfileComponent,
     HomepageComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    EventCardComponent
   ],
   imports: [
     BrowserModule,
