@@ -1,5 +1,26 @@
 <div class="container">
-    <div class="row">
-            <app-event-card *ngFor='let event of events; index as i' [event]="event"></app-event-card>
+    <!--Not admin-->
+    <div class="row" *ngIf="!this.authentication.userIsAdmin()">
+        <app-event-card *ngFor="let event of events; index as i" [event]="event"></app-event-card>
     </div>
+    <!--Admin-->
+    <table class="table" *ngIf="this.authentication.userIsAdmin()">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let event of events; index as i">
+                <th scope="row">{{event._id}}</th>
+                <td>{{event.name}}</td>
+                <td>{{event.location}}</td>
+                <td>{{event.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>

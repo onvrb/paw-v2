@@ -45,7 +45,7 @@ userController.register = async function (req, res) {
 
 userController.login = async function (req, res) {
   try {
-    var user = await User.findOne({ email: req.body.email });
+    var user = await User.findOne({ email: req.body.email }).populate("type");
 
     if (user == null)
       res(404).jsonp({});

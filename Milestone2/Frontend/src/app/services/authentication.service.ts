@@ -28,6 +28,12 @@ export class AuthenticationService {
     return JSON.parse(localStorage.getItem('currentUser') || '{}');
   }
 
+  userIsAdmin(): Boolean {
+    let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    let type: string = user.type.type;
+    return (type.toLocaleLowerCase() == 'admin');
+  }
+
   userLogged(): Boolean {
     return (localStorage.getItem('currentUser') != null);
   }
