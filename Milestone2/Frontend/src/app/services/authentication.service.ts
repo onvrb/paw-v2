@@ -34,6 +34,12 @@ export class AuthenticationService {
     return (type.toLocaleLowerCase() == 'admin');
   }
 
+  userIsPromoter(): Boolean {
+    let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    let type: string = user.type.type;
+    return (type.toLocaleLowerCase() == 'promoter');
+  }
+
   userLogged(): Boolean {
     return (localStorage.getItem('currentUser') != null);
   }
