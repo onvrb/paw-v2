@@ -9,7 +9,8 @@ var userController = {};
 
 userController.showAll = async function (req, res) {
   try {
-    var users = await User.find().populate("type"); //popular o campo type com informação
+    var query = req.query;
+    var users = await User.find(query).populate("type"); //popular o campo type com informação
     res.status(200).jsonp({ users: users });
   } catch (error) {
     res.status(500).render({ message: "Error finding users", error: error });
@@ -23,6 +24,26 @@ userController.show = async function (req, res) {
     res.status(200).jsonp({ user: user });
   } catch (error) {
     res.status(500).jsonp({ message: "Error finding user", error: error });
+  }
+}
+
+userController.getUserTypes = async function (req, res) {
+  try {
+    var users = await UserType.find();
+    res.status(200).jsonp({ user_types: users });
+  } catch (error) {
+    res.status(500).render({ message: "Error finding user_types", error: error });
+  }
+}
+
+userController.getUserByType = async function (req, res) {
+  try {
+    let id = req.params.id;
+    console.log(id)
+    var users = await User.find({ type: id });
+    res.status(200).jsonp({ users: users });
+  } catch (error) {
+    res.status(500).render({ message: "Error finding users", error: error });
   }
 }
 
@@ -104,7 +125,7 @@ userController.delete = async function (req, res) {
 
 userController.verifyToken = function (req, res, next) {
   var token = req.headers['authorization'];
-console.log(token)
+  console.log(token)
   if (token == null)
     return res.status(403).send({ auth: false, message: "No token provided." });
 

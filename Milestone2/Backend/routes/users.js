@@ -4,7 +4,9 @@ var userController = require("../controllers/userController");
 
 router.get("/", userController.showAll); //works
 router.get("/:id", userController.verifyToken, userController.show); //works
-router.post("/login", userController.login); 
+router.get("/type/:id", userController.getUserByType);
+router.get("/types/all", userController.getUserTypes);
+router.post("/login", userController.login);
 router.post("/register", userController.register); //works
 router.post("/logout", userController.logout); //
 router.put("/:id", userController.verifyToken, userController.edit); //

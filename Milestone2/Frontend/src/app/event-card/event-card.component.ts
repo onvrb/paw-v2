@@ -16,7 +16,6 @@ export class EventCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.event)
     this.name = this.event.name;
     this.description = this.event.description;
     this.location = this.event.location.name;
