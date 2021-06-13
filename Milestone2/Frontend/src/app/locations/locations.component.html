@@ -14,17 +14,12 @@
         <td>{{ location.capacity }}</td>
         <td>{{ location.limit }}</td>
       </tr>
-      <ng-container *ngIf="locations.length; else elseBlock">
-        <tr>
-          <td>&nbsp;</td>
-          <td colspan="2">{{locations.length}} locations loaded</td>
-        </tr>
-      </ng-container>
-      <ng-template #elseBlock>
-        <tr>
-          <td>&nbsp;</td>
-          <td colspan="2">No locations found</td>
-        </tr>
-      </ng-template>
     </tbody>
   </table>
+
+<ng-container *ngIf="locations.length; else elseBlock">
+  <p>{{locations.length}} locations loaded</p>
+</ng-container>
+<ng-template #elseBlock>
+  <p>No locations found</p>
+</ng-template>
