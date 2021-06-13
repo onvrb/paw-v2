@@ -16,7 +16,7 @@ var EventSchema = new mongoose.Schema({
 //cant delete if event has tickets sold
 EventSchema.pre('deleteOne', async (next) => {
   let tickets = await Ticket.find({ event: this.name });
-  if (tickets) {
+  if (tickets.length) {
     var err = new Error('Event has sold tickets.');
     next(err);
   }

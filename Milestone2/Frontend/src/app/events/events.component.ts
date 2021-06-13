@@ -34,4 +34,13 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  delete(event: any): void {
+    let id: string = event._id;
+    let name: string = event.name;
+    if (confirm(`Do you wish to delete the event ${name}?`)) {
+      this.eventService.deleteEvent(id).subscribe((res: any) => {
+        window.location.reload();
+      })
+    }
+  }
 }

@@ -16,6 +16,10 @@ export class EventsService {
     return this.http.get<any>(`${environment.base_url}/api/events`, { params: params });
   }
 
+  deleteEvent(id: string): Observable<any> {
+    return this.http.delete<any>(`${environment.base_url}/api/events/${id}`);
+  }
+
   createEvent(form: FormGroup): Observable<any> {
     return this.http.post<any>(`${environment.base_url}/api/events`, form.getRawValue());
   }

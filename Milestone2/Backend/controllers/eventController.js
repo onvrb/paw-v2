@@ -51,6 +51,7 @@ eventController.delete = async function (req, res) {
         var event = await Event.deleteOne({ _id: req.params.id });
         res.status(200).jsonp({ event: event });
     } catch (error) {
+        console.log(error);
         res.status(500).jsonp({ message: "Error deleting event", error: error });
     }
 }
