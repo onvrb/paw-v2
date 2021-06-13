@@ -39,7 +39,7 @@ import { UsersComponent } from './users/users.component';
     HomepageComponent,
     PagenotfoundComponent,
     EventCardComponent,
-    EventFormComponent
+    EventFormComponent,
     UsersComponent
   ],
   imports: [
