@@ -17,38 +17,34 @@
                     <a class="btn btn-primary" routerLink="/register">Register</a>
                 </li>
             </div>
-
-
             <!--Logged-->
             <div class="nav navbar-nav" *ngIf="this.authentication.userLogged()">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/home">Home</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/profile">Profile</a>
                 </li>
-
-                <!--user-->
-                <!--promotor-->
-                <!--admin-->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/events">Events</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/locations">Locations</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/users">Users</a>
-                </li>
+
+                <!--user-->
+                <!--promotor-->
+                <!--admin-->
+                <div *ngIf="this.authentication.userIsAdmin()">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/users">Users</a>
+                    </li>
+                </div>
 
                 <li class="nav-item ">
                     <a class="nav-link" routerLink="#" (click)="logout()">Logout</a>
                 </li>
-
-
             </div>
-
         </ul>
     </div>
 </nav>
