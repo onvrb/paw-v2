@@ -4,25 +4,15 @@
 
     <input formControlName="name" type="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
 
-    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
 
-    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
+    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-    <select formControlName="type" class="form-control last" required>
-        <option disabled value="User">Select user type</option>
-        <option value="User">User</option>
-        <option value="Promoter">Promoter</option>
-    </select>
-
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
-        required>
-    <label for="inputPassword" class="sr-only">Type</label>
     <div class="form-group">
-        <select formControlName="type" class="form-control custom-select" id="exampleFormControlSelect1">
-            <option disabled selected="selected">--User Type--</option>
+        <select required formControlName="type" class="form-control custom-select" id="exampleFormControlSelect1">
+            <option disabled value="">Select user type</option>
             <option value="User">User</option>
-            <option value="Promotor">Promotor</option>
+            <option value="Promoter">Promoter</option>
         </select>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
