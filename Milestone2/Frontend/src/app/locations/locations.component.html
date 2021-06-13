@@ -1,3 +1,9 @@
+<div *ngIf="this.authentication.userIsAdmin() || this.authentication.userIsPromoter()">
+  <div class="text-align-center mb-5">
+    <button class="btn btn-success" data-toggle="modal" data-target="#eventModal">Create Event</button>
+  </div>
+</div>
+
 <table class="table">
     <thead>
       <tr>
@@ -5,6 +11,7 @@
         <th scope="col">Address</th>
         <th scope="col">Capacity</th>
         <th scope="col">Limit</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -13,6 +20,14 @@
         <td>{{ location.address }}</td>
         <td>{{ location.capacity }}</td>
         <td>{{ location.limit }}</td>
+        <td>
+          <div *ngIf="this.authentication.userIsAdmin() || this.authentication.userIsPromoter()">
+            <button class="btn btn-warning mr-1">Edit</button> 
+            <ng-container *ngIf="this.authentication.userIsAdmin()">
+              <button class="btn btn-danger mr-1">Delete</button>
+            </ng-container>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
