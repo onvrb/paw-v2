@@ -17,7 +17,7 @@
                     <a class="btn btn-primary" routerLink="/register">Register</a>
                 </li>
             </div>
-            <!--Logged-->
+            <!--Logged / user-->
             <div class="nav navbar-nav" *ngIf="this.authentication.userLogged()">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/home">Home</a>
@@ -32,8 +32,6 @@
                     <a class="nav-link" routerLink="/locations">Locations</a>
                 </li>
 
-                <!--user-->
-                <!--promotor-->
                 <!--admin-->
                 <div *ngIf="this.authentication.userIsAdmin()">
                     <li class="nav-item">

@@ -37,4 +37,5 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  
+
+  select>li>a { padding:15px 25px; }
