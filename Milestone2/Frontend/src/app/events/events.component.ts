@@ -19,11 +19,11 @@ export class EventsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
-    public authentication: AuthenticationService) { }
+    public authentication: AuthenticationService) {
 
-  ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       this.query = params;
+
     })
 
     this.eventService.getEvents(this.query).subscribe((res: any) => {
@@ -31,5 +31,7 @@ export class EventsComponent implements OnInit {
       console.log(this.events)
     })
   }
+
+  ngOnInit(): void { }
 
 }

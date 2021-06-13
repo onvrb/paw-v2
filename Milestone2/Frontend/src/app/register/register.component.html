@@ -14,5 +14,16 @@
         <option value="Promoter">Promoter</option>
     </select>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit" >Register</button>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+        required>
+    <label for="inputPassword" class="sr-only">Type</label>
+    <div class="form-group">
+        <select formControlName="type" class="form-control custom-select" id="exampleFormControlSelect1">
+            <option disabled selected="selected">--User Type--</option>
+            <option value="User">User</option>
+            <option value="Promotor">Promotor</option>
+        </select>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>

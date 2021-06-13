@@ -6,6 +6,6 @@ exports.SeedUserTypes = async () => {
   if (userTypes.length == 0) {
     new UserType({ type: "admin" }).save();
     new UserType({ type: "promoter" }).save();
-    new UserType({ type: "client" }).save();
+    new UserType({ type: "user" }).save();
   }
 };

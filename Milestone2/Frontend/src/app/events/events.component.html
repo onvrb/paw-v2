@@ -4,25 +4,38 @@
         <app-event-card *ngFor="let event of events; index as i" [event]="event"></app-event-card>
     </div>
     <!--Admin-->
-    <table class="table" *ngIf="this.authentication.userIsAdmin()">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Location name</th>
-                <th scope="col">Location address</th>
-                <th scope="col">Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let event of events; index as i">
-                <th scope="row">{{event._id}}</th>
-                <td>{{event.name}}</td>
-                <td>{{event.location.name}}</td>
-                <td>{{event.location.address}}</td>
-                <td>{{event.date}}</td>
-            </tr>
-        </tbody>
-    </table>
 
+    <div *ngIf="this.authentication.userIsAdmin()">
+        <div class="text-align-center mb-5">
+            <button class="btn btn-success" data-toggle="modal" data-target="#eventModal">Create Event</button>
+        </div>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of events; index as i">
+                    <th scope="row">{{event.name}}</th>
+                    <td>{{event.location.name}}</td>
+                    <td>{{event.date}}</td>
+                    <td>{{event.time}}</td>
+                    <td>
+                        <div>
+                            <button class="btn btn-warning mr-1">Edit</button>
+                            <button class="btn btn-danger mr-1">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <app-event-form></app-event-form>
 </div>
