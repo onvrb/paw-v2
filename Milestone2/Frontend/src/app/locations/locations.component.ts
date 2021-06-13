@@ -11,7 +11,10 @@ import { AuthenticationService } from '../services/authentication.service';
 export class LocationsComponent implements OnInit {
   locations: any;
 
-  constructor(private http: HttpClient, private router: Router, private authentication: AuthenticationService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    public authentication: AuthenticationService) { }
 
   ngOnInit(): void {
     this.http.get('http://localhost:4200/api/locations')
