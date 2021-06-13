@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -19,8 +20,8 @@ export class AuthenticationService {
     localStorage.removeItem('token');
   }
 
-  register(name: string, email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${environment.base_url}/api/users/register`, { name: name, email: email, password: password });
+  register(form: FormGroup): Observable<any> {
+    return this.http.post<any>(`${environment.base_url}/api/users/register`, form.getRawValue());
   }
 
   getUser(): Observable<any> {

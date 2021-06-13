@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -12,21 +13,20 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authentication: AuthenticationService) {
     this.form = this.formBuilder.group({
       name: '',
       email: '',
       password: '',
-      type: 'Admin'
+      type: ''
     })
   }
 
   ngOnInit(): void { }
 
   submit(): void {
-    this.http.post('http://localhost:4200/api/users/register', this.form.getRawValue(), { withCredentials: true })
-      .subscribe(res => {
-        this.router.navigate(['home']);
-      })
+    this.authentication.register(this.form).subscribe((res: any) => {
+      this.router.navigate(['home']);
+    })
   }
 }

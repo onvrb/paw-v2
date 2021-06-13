@@ -3,8 +3,7 @@
         height="72">
     <h1 class="h3 mb-3 font-weight-normal">Register</h1>
     <label for="inputName" class="sr-only">Nome</label>
-    <input formControlName="name" type="name" id="inputName" class="form-control" placeholder="Name" required
-        autofocus>
+    <input formControlName="name" type="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
 
     <label for="inputEmail" class="sr-only">Email address</label>
     <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
@@ -13,5 +12,13 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
         required>
+    <label for="inputPassword" class="sr-only">Type</label>
+    <div class="form-group">
+        <select formControlName="type" class="form-control" id="exampleFormControlSelect1">
+            <option disabled selected="selected">--User Type--</option>
+            <option value="User">User</option>
+            <option value="Promotor">Promotor</option>
+        </select>
+    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>
