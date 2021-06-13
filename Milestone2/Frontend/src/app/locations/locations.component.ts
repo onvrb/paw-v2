@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../services/authentication.service';
+import { LocationsService } from '../services/locations.service';
 
 @Component({
   selector: 'app-locations',
@@ -14,6 +15,7 @@ export class LocationsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private locationService : LocationsService,
     public authentication: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -22,4 +24,15 @@ export class LocationsComponent implements OnInit {
         this.locations = res.locations;
       })
   }
+
+  delete(location: any): void {
+    let id: string = location._id;
+    let name: string = location.name;
+    if (confirm(`Do you wish to delete the location ${name}?`)) {
+      this.locationService.deleteLocation(id).subscribe((res: any) => {
+        window.location.reload();
+      })
+    }
+  }
+
 }

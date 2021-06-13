@@ -10,7 +10,7 @@ var LocationSchema = new mongoose.Schema({
 
 LocationSchema.pre('deleteOne', async (next) => {
     let events = await Event.find({ location: this.name });
-    if (events) {
+    if (events.length) {
         var err = new Error('Location has events.');
         next(err);
     }

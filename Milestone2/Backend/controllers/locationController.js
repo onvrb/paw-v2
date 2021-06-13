@@ -41,7 +41,7 @@ locationController.edit = async function (req, res) {
 
 locationController.delete = async function (req, res) {
   try {
-    var location = await Location.deleteOne({ _id: id });
+    var location = await Location.deleteOne({ _id: req.params.id });
     res.status(200).jsonp({ location: location });
   } catch (error) {
     res.status(500).jsonp({ message: "Error deleting location", error: error });

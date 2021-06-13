@@ -14,4 +14,8 @@ export class LocationsService {
     return this.http.get<any>(`${environment.base_url}/api/locations`);
   }
 
+  deleteLocation(id: string): Observable<any> {
+    return this.http.delete<any>(`${environment.base_url}/api/locations/${id}`);
+  }
+
 }

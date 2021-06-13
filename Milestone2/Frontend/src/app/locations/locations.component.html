@@ -24,7 +24,7 @@
           <div *ngIf="this.authentication.userIsAdmin() || this.authentication.userIsPromoter()">
             <button class="btn btn-warning mr-1">Edit</button> 
             <ng-container *ngIf="this.authentication.userIsAdmin()">
-              <button class="btn btn-danger mr-1">Delete</button>
+              <button class="btn btn-danger mr-1" (click)="delete(location)">Delete</button>
             </ng-container>
           </div>
         </td>
