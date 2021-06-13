@@ -9,7 +9,8 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Location</th>
+                <th scope="col">Location name</th>
+                <th scope="col">Location address</th>
                 <th scope="col">Date</th>
             </tr>
         </thead>
@@ -17,7 +18,8 @@
             <tr *ngFor="let event of events; index as i">
                 <th scope="row">{{event._id}}</th>
                 <td>{{event.name}}</td>
-                <td>{{event.location}}</td>
+                <td>{{event.location.name}}</td>
+                <td>{{event.location.address}}</td>
                 <td>{{event.date}}</td>
             </tr>
         </tbody>
