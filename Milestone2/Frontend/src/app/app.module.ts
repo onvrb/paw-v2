@@ -19,6 +19,7 @@ import { JwtInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { EventCardComponent } from './event-card/event-card.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EventCardComponent } from './event-card/event-card.component';
     ProfileComponent,
     HomepageComponent,
     PagenotfoundComponent,
-    EventCardComponent
+    EventCardComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

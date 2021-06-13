@@ -10,6 +10,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: 'tickets', component: TicketsComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'users', component: UsersComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
