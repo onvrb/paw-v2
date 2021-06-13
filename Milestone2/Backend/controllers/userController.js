@@ -60,7 +60,7 @@ userController.register = async function (req, res) {
       res.status(200).jsonp({ user: user, token: token });
     }
   } catch (error) {
-    res.jsonp({ message: "Error registering user", error: error });
+    res.status(500).jsonp({ message: "Error registering user", error: error });
   }
 }
 
