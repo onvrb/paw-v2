@@ -20,6 +20,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { EventFormComponent } from './event-form/event-form.component';
+import { UsersComponent } from './users/users.component';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { EventFormComponent } from './event-form/event-form.component';
     PagenotfoundComponent,
     EventCardComponent,
     EventFormComponent
+    UsersComponent
   ],
   imports: [
     BrowserModule,
