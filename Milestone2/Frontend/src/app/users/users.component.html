@@ -1,1 +1,27 @@
-<p>users works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Type</th>
+            <th scope="col">Covid</th>
+            <th scope="col">Banned</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.type.type }}</td>
+            <td>{{ user.covid }}</td>
+            <td>{{ user.banned }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-container *ngIf="users.length; else elseBlock">
+    <p>{{users.length}} users loaded</p>
+</ng-container>
+<ng-template #elseBlock>
+    <p>No users found</p>
+</ng-template>
