@@ -40,6 +40,12 @@ export class AuthenticationService {
     return (type.toLocaleLowerCase() == 'promoter');
   }
 
+  userIsClient(): Boolean {
+    let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    let type: string = user.type.type;
+    return (type.toLocaleLowerCase() == 'client');
+  }
+
   userLogged(): Boolean {
     return (localStorage.getItem('currentUser') != null);
   }
